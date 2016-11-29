@@ -1,0 +1,34 @@
+.page-header.navbar .page-actions h2{
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 36px;
+}
+.feeds li .col2{
+  width: 100px;
+  margin-left: -100px;
+}
+.slip-logo{
+  text-align: center;
+}
+.slip-logo img{
+  width: 90px;
+  display: inline-block;
+}
+.slipheading{
+  text-align: center;
+  margin: 15px 0;
+    background: #c3d6ea;
+    padding: 15px 0;
+}
+.portlet{
+  position: relative;
+}
+.portlet .ribbon.slipno{
+  position: absolute;
+  background: #17c4bb;
+  right: 0;
+  top: 0;
+  color: #fff;
+  padding: 3px 10px;
+}
