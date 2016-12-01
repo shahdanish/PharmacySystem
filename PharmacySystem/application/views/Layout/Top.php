@@ -151,7 +151,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="dropdown dropdown-extended quick-sidebar-toggler">
+					<li class="dropdown dropdown-extended quick-sidebar-toggler" onclick="window.location.href='<?php echo site_url('User_Authentication/logout');?>'">
 						<span class="sr-only">Toggle Quick Sidebar</span>
 						<i class="icon-logout"></i>
 					</li>
