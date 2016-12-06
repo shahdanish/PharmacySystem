@@ -15,6 +15,8 @@ Class User_Authentication extends MY_Controller {
 
 		// Load session library
 		$this->load->library('session');
+		
+		$this->load->helper('url');
 
 		// Load database
 		$this->load->model('login_database');
@@ -86,8 +88,9 @@ Class User_Authentication extends MY_Controller {
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $session_data);
-					$this->middle = 'Dashboard';
-					$this->layout();
+					redirect('Welcome/index');
+					// $this->middle = 'Dashboard';
+					// $this->layout();
 				}
 			} else {
 				$data = array(
