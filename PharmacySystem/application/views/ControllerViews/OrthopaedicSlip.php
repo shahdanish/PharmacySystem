@@ -50,17 +50,17 @@
 							</div>
 						</div>
 						<div class="portlet-body">
-						  <form class="">
+						  <form class="" >
 							<div class="form-group">
 							  <label for="">Patient Name</label>
-							  <input type="text" name="" value="" class="form-control">
+							  <input type="text" name="PatientName" id="PatientName" value="" class="form-control">
 							</div>
 							<div class="form-group">
 							  <label for="">Total Fees Received</label>
-							  <input type="text" name="" value="" class="form-control">
+							  <input type="text" name="FeesRecieved" id="FeesRecieved" value="" class="form-control">
 							</div>
 							<div class="form-group">
-							  <input type="submit" name="" value="Print" class="btn btn-primary btn-block">
+							  <input type="submit" name="" value="Print" id="SaveMainSlipBtn" class="btn btn-primary btn-block">
 							</div>
 						  </form>
 						</div>
@@ -71,3 +71,39 @@
 	</div>
 	<!-- END CONTENT BODY -->
 </div>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#SaveMainSlipBtn").click(function(event) {
+			event.preventDefault();
+			var PatientName = $("#PatientName").val();
+			var FeesRecieved = $("#FeesRecieved").val();
+			jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/SlipController/SaveMainSlip",
+				dataType: 'json',
+				data: {
+					PatientName: PatientName,
+					FeesRecieved: FeesRecieved
+				},
+				success: function(res) {
+					debugger;
+					if (res) {
+						debugger;
+						// Show Entered Value
+						
+					}
+				},
+				error: function(err) {
+					debugger;
+					if (err) {
+						debugger;
+						// Show Entered Value
+						
+					}
+				}
+			});
+		});
+	});
+
+</script>

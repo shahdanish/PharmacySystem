@@ -81,10 +81,12 @@ Class User_Authentication extends MY_Controller {
 				$username = $this->input->post('username');
 				$result = $this->login_database->read_user_information($username);
 				if ($result != false) {
+					$TokenID = $this->login_database->selectnexttoken();
 					$session_data = array(
 						'username' => $result[0]->UserName,
 						'userrole' => $result[0]->UserRole,
-						'status' => $result[0]->IsActive
+						'status' => $result[0]->IsActive,
+						'tokenid' => $TokenID
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $session_data);
