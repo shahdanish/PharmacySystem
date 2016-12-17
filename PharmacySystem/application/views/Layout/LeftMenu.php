@@ -70,6 +70,26 @@
 					</a>
 
 				</li>
+				<li class="nav-item start  ">
+
+					<a href= "<?php echo site_url('LabTestsController/Index');?>" class="nav-link nav-toggle">
+						<i class="icon-home"></i>
+						<span class="title">Lab Tests</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+
+				</li>
+				<li class="nav-item start  ">
+
+					<a href= "<?php echo site_url('LabTestsController/TestTypes');?>" class="nav-link nav-toggle">
+						<i class="icon-home"></i>
+						<span class="title">Test Types</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+
+				</li>
 			<?php } ?> 
 
 	  </ul>

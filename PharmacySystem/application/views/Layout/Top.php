@@ -121,7 +121,7 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="page_user_profile_1.html">
+								<a href="../Dashboard/UserProfile">
 									<i class="icon-user"></i> My Profile </a>
 							</li>
 							<li>
@@ -146,7 +146,7 @@
 									<i class="icon-lock"></i> Lock Screen </a>
 							</li>
 							<li>
-								<a href="page_user_login_1.html">
+								<a href="../user_authentication/logout">
 									<i class="icon-key"></i> Log Out </a>
 							</li>
 						</ul>

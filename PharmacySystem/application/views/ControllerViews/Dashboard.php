@@ -131,7 +131,7 @@
 					</div>
 					<div class="details">
 						<div class="number">
-							<span data-counter="counterup" data-value="349">0</span>
+							<span id="dailyTokenCount"></span>
 						</div>
 						<div class="desc"> Daily Visitors </div>
 					</div>
@@ -147,7 +147,7 @@
 					</div>
 					<div class="details">
 						<div class="number">
-							<span data-counter="counterup" data-value="12,5">0</span> </div>
+							<span id="monthlyTokenCount"></span> </div>
 						<div class="desc"> Monthly Visitors </div>
 					</div>
 					<a class="more" href="javascript:;"> View more
@@ -178,10 +178,10 @@
 					</div>
 					<div class="details">
 						<div class="number"> +
-							<span data-counter="counterup" data-value="8"></span> </div>
+							<span id="spanPatientsAdmit"></span> </div>
 						<div class="desc"> Patient Admit </div>
 					</div>
-					<a class="more" href="javascript:;"> View more
+					<a class="more" href="../PatientAdmissionController/PatientsList"> View more
 							<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 				</div>
@@ -279,7 +279,7 @@
 					</div>
 					<div class="portlet-body">
 						<div class="table-scrollable">
-							<table class="table table-hover">
+							<table class="table table-hover" id="tblTests">
 								<thead>
 									<tr>
 										<th> # </th>
@@ -289,66 +289,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td> 1 </td>
-										<td> BLOOD C/E</td>
-										<td> 400</td>
-										<td><a class="btn btn-circle btn-icon-only btn-default" href="javascript:;"><span class="md-click-circle md-click-animate" style="height: 27px; width: 27px; top: -5.5px; left: -3.84375px;"></span>
-											  <i class="icon-wrench"></i>
-										  </a>
-											<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-												<i class="icon-trash"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> BL SUGAR</td>
-										<td> 100</td>
-										<td><a class="btn btn-circle btn-icon-only btn-default" href="javascript:;"><span class="md-click-circle md-click-animate" style="height: 27px; width: 27px; top: -5.5px; left: -3.84375px;"></span>
-											  <i class="icon-wrench"></i>
-										  </a>
-											<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-												<i class="icon-trash"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> BL SUGAR</td>
-										<td> 100</td>
-										<td><a class="btn btn-circle btn-icon-only btn-default" href="javascript:;"><span class="md-click-circle md-click-animate" style="height: 27px; width: 27px; top: -5.5px; left: -3.84375px;"></span>
-											  <i class="icon-wrench"></i>
-										  </a>
-											<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-												<i class="icon-trash"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> BL SUGAR</td>
-										<td> 100</td>
-										<td><a class="btn btn-circle btn-icon-only btn-default" href="javascript:;"><span class="md-click-circle md-click-animate" style="height: 27px; width: 27px; top: -5.5px; left: -3.84375px;"></span>
-											  <i class="icon-wrench"></i>
-										  </a>
-											<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-												<i class="icon-trash"></i>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> BL SUGAR</td>
-										<td> 100</td>
-										<td><a class="btn btn-circle btn-icon-only btn-default" href="javascript:;"><span class="md-click-circle md-click-animate" style="height: 27px; width: 27px; top: -5.5px; left: -3.84375px;"></span>
-											  <i class="icon-wrench"></i>
-										  </a>
-											<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-												<i class="icon-trash"></i>
-											</a>
-										</td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -577,3 +518,22 @@
 	</div>
 	<!-- END CONTENT BODY -->
 </div>
+<script>
+$(document).ready(function() {
+		APICall("<?php echo base_url(); ?>" + "index.php/Dashboard/LoadTokenCount", "SuccessLoadTokenID", "FailureLoadTokenID", "GET");
+		
+	});
+function SuccessLoadTokenID(data)
+{
+	$("#dailyTokenCount").html(data[0].DailyTokenCount);
+	$("#monthlyTokenCount").html(data[0].MonthlyTokenCount);
+	$("#spanPatientsAdmit").html(data[0].AdmitPatients);
+	//$("#spanPatientsAdmit").attr({"data-value":data[0].AdmitPatients,"data-counter":"counterup"});
+	
+}
+function FailureLoadTokenID(err)
+{
+}
+	
+
+</script>

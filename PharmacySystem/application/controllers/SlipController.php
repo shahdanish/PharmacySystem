@@ -21,6 +21,8 @@ class SlipController extends MY_Controller
 		// Load database
 		$this->load->model('mysqlhelper');
 		
+		$this->load->model('TestSlip_db');
+		
 	}
 	
 	public function SaveMainSlip()
@@ -28,11 +30,38 @@ class SlipController extends MY_Controller
 		$data = array(
 				'PatientName' => $this->input->post("PatientName"),
 				'FeesRecieved' => $this->input->post("FeesRecieved"),
-				'tokenid' => $this->session->userdata["logged_in"]["tokenid"],
+				'tokenid' => $this->input->post("TokenID"),
 				'userrole' => $this->session->userdata["logged_in"]["userrole"]
 			);
-		echo $this->mysqlhelper->insertpatienttoken($data);
+		echo json_encode($this->mysqlhelper->insertpatienttoken($data));
 		
+	}
+	public function LoadTokenID()
+	{
+		$result = $this->mysqlhelper->LoadNewTokenID();
+		echo json_encode($result);
+	}
+	public function LoadTests()
+	{
+		$result = $this->mysqlhelper->LoadTests();
+		echo json_encode($result);
+	}
+	public function LoadDoctors()
+	{
+		$result = $this->mysqlhelper->LoadDoctors();
+		echo json_encode($result);
+	}
+	public function SavePatientAndTest()
+	{
+		$data = array(
+				'PatientName' => $this->input->post("PatientName"),
+				'PatientCNIC' => $this->input->post("PatientCnic"),
+				'RefferedBy' => $this->input->post("RefferedBy"),
+				'TestID' => $this->input->post("Test"),
+				'TestFee' => $this->input->post("TestFee")
+			);
+		echo json_encode($this->TestSlip_db->SavePatientAndTest($data));
 	}
 	
 }
+?>

@@ -30,7 +30,7 @@ Class Login_Database extends CI_Model {
 	}
 
 // Read data using username and password
-public function login($data) {
+	public function login($data) {
 	$condition = "UserName =" . "'" . $data['username'] . "' AND " . "Password =" . "'" . $data['password'] . "'";
 	$this->db->select('*');
 	$this->db->from('tblusers');
@@ -46,22 +46,38 @@ public function login($data) {
 }
 
 // Read data from database to show data in admin page
-public function read_user_information($username) {
+	public function read_user_information($username) {
 
-$condition = "UserName =" . "'" . $username . "'";
-$this->db->select('*');
-$this->db->from('tblusers');
-$this->db->where($condition);
-$this->db->limit(1);
-$query = $this->db->get();
+	$condition = "UserName =" . "'" . $username . "'";
+	$this->db->select('*');
+	$this->db->from('tblusers');
+	$this->db->where($condition);
+	$this->db->limit(1);
+	$query = $this->db->get();
 
-if ($query->num_rows() == 1) {
-return $query->result();
-} else {
-return false;
-}
-}
-
+	if ($query->num_rows() == 1) {
+	return $query->result();
+	} else {
+	return false;
+	}
+	}
+	public function LoadUserInfo($userID)
+	{
+		$query="SELECT * FROM  `tblusers` U LEFT JOIN  `tbluserprofile` UP ON U.UserId = UP.UserID WHERE U.UserID = ".$userID; 
+		return $this->db->query($query)->result();
+	}
+	public function SaveUserInformation($data)
+	{
+		$query= "Update `tblusers` Set UserName = '".$data["UserName"]."',Password = '".$data["Password"]."'  WHERE UserID = ".$data["UserID"]; 
+		$this->db->query($query);
+		$query="SELECT * FROM  `tbluserprofile` UP  WHERE UP.UserID = ".$data["UserID"]; 
+		$returnData =  $this->db->query($query)->result();
+		if(count($returnData) > 0)
+			$query = "Update tbluserprofile set FirstName = '".$data["FirstName"]."', LastName = '".$data["LastName"]."',Address = '".$data["Address"]."' Where UserID = ".$data["UserID"]; 
+		else
+			$query = "Insert Into tbluserprofile (UserID,FirstName,LastName,Address) values ('".$data["UserID"]."','".$data["FirstName"]."', '".$data["LastName"]."','".$data["Address"]."');"; 
+		return $this->db->query($query);
+	}
 }
 
 ?>

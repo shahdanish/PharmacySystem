@@ -26,6 +26,9 @@
 <link href="<?php echo base_url();?>application/assets/layouts/layout2/css/layout.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="<?php echo base_url();?>application/assets/layouts/layout2/css/custom.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url();?>application/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url();?>application/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url();?>application/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
 
 <!-- END THEME LAYOUT STYLES -->
 <link rel="shortcut icon" href="favicon.ico" /> 
@@ -54,6 +57,9 @@
 <script src="<?php echo base_url();?>application/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 
+<script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+
+
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="<?php echo base_url();?>application/assets/global/scripts/app.min.js" type="text/javascript"></script>
@@ -65,3 +71,7 @@
 <script src="<?php echo base_url();?>application/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/scripts/common.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>

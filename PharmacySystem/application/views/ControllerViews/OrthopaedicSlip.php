@@ -24,7 +24,7 @@
 		<div class="row">
 		  <div class="col-md-6 col-md-offset-2 ">
 			<div class="portlet light ">
-			  <span class="ribbon slipno">Slip No. <strong>14</strong></span>
+			  <span class="ribbon slipno">Slip No. <strong><span id="spanTokenNum"></span></strong></span>
 			  <div class="media">
 				<div class="media-left">
 				  <div class="slip-logo">
@@ -44,7 +44,7 @@
 							</div>
 							<div class="actions">
 								<a class="btn btn-default" href="javascript:;">
-									Date: <strong>22-11-2016</strong>
+									Date: <strong id="tokenDate">22-11-2016</strong>
 								</a>
 
 							</div>
@@ -60,6 +60,7 @@
 							  <input type="text" name="FeesRecieved" id="FeesRecieved" value="" class="form-control">
 							</div>
 							<div class="form-group">
+							
 							  <input type="submit" name="" value="Print" id="SaveMainSlipBtn" class="btn btn-primary btn-block">
 							</div>
 						  </form>
@@ -72,19 +73,37 @@
 	<!-- END CONTENT BODY -->
 </div>
 <script type="text/javascript">
+function SuccessLoadTokenID(data)
+{
+	
+	$("#spanTokenNum").html(data[0].TokenID);
+}
+function FailureLoadTokenID(err)
+{
 
+
+}
 	$(document).ready(function() {
+		
+		APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTokenID", "SuccessLoadTokenID", "FailureLoadTokenID", "GET");
+		var date = new Date();
+		date = date.getDate()+"-"+(date.getMonth()+1) +"-"+date.getFullYear();
+		$("#tokenDate").text(date)
+		
+		
 		$("#SaveMainSlipBtn").click(function(event) {
 			event.preventDefault();
 			var PatientName = $("#PatientName").val();
 			var FeesRecieved = $("#FeesRecieved").val();
+			var TokenID = $("#spanTokenNum").text();
 			jQuery.ajax({
 				type: "POST",
 				url: "<?php echo base_url(); ?>" + "index.php/SlipController/SaveMainSlip",
 				dataType: 'json',
 				data: {
 					PatientName: PatientName,
-					FeesRecieved: FeesRecieved
+					FeesRecieved: FeesRecieved,
+					TokenID : TokenID
 				},
 				success: function(res) {
 					debugger;

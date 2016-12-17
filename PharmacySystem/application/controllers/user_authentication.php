@@ -86,7 +86,7 @@ Class User_Authentication extends MY_Controller {
 						'username' => $result[0]->UserName,
 						'userrole' => $result[0]->UserRole,
 						'status' => $result[0]->IsActive,
-						'tokenid' => $TokenID
+						'userID'=>$result[0]->UserId
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $session_data);
@@ -113,6 +113,22 @@ Class User_Authentication extends MY_Controller {
 		$this->session->unset_userdata('logged_in', $sess_array);
 		$data['message_display'] = 'Successfully Logout';
 		$this->load->view('ControllerViews/login_form', $data);
+	}
+	public function LoadUserInfo()
+	{
+		echo json_encode($this->login_database->LoadUserInfo($this->input->get('UserId')));
+	}
+	public function SaveUserInformation()
+	{
+		$data = array(
+				'UserName' => $this->input->post('UserName'),
+				'Password' => $this->input->post('Password'),
+				'FirstName' => $this->input->post('FirstName'),
+				'LastName' => $this->input->post('LastName'),
+				'Address' => $this->input->post('Address'),
+				'UserID' => $this->input->post('UserID'),
+			);
+		echo json_encode($this->login_database->SaveUserInformation($data));
 	}
 
 }

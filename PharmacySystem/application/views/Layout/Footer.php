@@ -100,7 +100,7 @@
                         <div class="col-md-12">
                             <h4>Enter Total Numbers of Xrays</h4>
                             <p>
-                                <input type="text" class="col-md-12 form-control" placeholder="Enter total Xrays"> </p>
+                                <input type="number" id="txtXrayItems" name="txtXrayItems" class="col-md-12 form-control" placeholder="Enter total Xrays"> </p>
 
                         </div>
                     </div>
@@ -108,10 +108,29 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
-                    <button type="button" class="btn green">ADD</button>
+                    <button type="button" class="btn green" onclick="AddXRayItems()">ADD</button>
                 </div>
             </div>
         </div>
     </div>
-    
 	
+    <script>
+	$(function(){
+	
+	})
+	function AddXRayItems(){
+		var ItemsCount = {"Items":$("#txtXrayItems").val()};
+		APICall("<?php echo base_url(); ?>" + "index.php/Dashboard/AddXRays", "SuccessAddXRayItems", "FailureAddXRayItems", "POST",{"Items":$("#txtXrayItems").val()});
+	}
+function SuccessAddXRayItems(data)
+{
+	alert("success"+data);
+}
+function FailureAddXRayItems(err)
+{
+	alert("failure"+err)
+}
+
+
+
+	</script>

@@ -44,7 +44,7 @@
 					</div>
 					<div class="actions">
 						<a class="btn btn-default" href="javascript:;">
-							Date: <strong>22-11-2016</strong>
+							Date: <strong id="slipDate"></strong>
 						</a>
 
 					</div>
@@ -52,31 +52,32 @@
 				<div class="portlet-body">
 				  <div class="form-group">
 					<label for="">Patient Name</label>
-					<input type="text" name="" value="" class="form-control">
+					<input type="text" name="" value="" id="txtPatientName" class="form-control">
+				  </div>
+				  <div class="form-group">
+					<label for="">Patient CNIC</label>
+					<input type="text" name="txtCnicNo" id="txtCnicNo" value="" class="form-control">
 				  </div>
 				  <form class="">
 					<div class="form-group">
 					  <label for="">Ref by Doctor</label>
-					  <select class="form-control" name="">
-						<option value="1">Dr Cheema</option>
-						<option value="2">Dr Ali</option>
-						<option value="3">Dr Nouman</option>
+					  <select class="form-control" name="" id="ddlDoctors">
+						
 					  </select>
 					</div>
 					<div class="form-group">
 					  <label for="">Select Test</label>
-					  <select class="form-control" name="">
-						<option value="1">Blood Test</option>
-						<option value="2">Sugar Test</option>
+					  <select class="form-control" name="" id="ddlTests">
+						
 					  </select>
 					</div>
 
 					<div class="form-group">
 					  <label for="">Total Fee</label>
-					  <input type="text" name="" value="" class="form-control">
+					  <input type="number" name="txtFee" id="txtFee" value="" class="form-control">
 					</div>
 					<div class="form-group">
-					  <input type="submit" name="" value="Print" class="btn btn-primary btn-block">
+					  <input type="button" name="" value="Print" class="btn btn-primary btn-block" onclick="SavePatientAndTest()">
 					</div>
 				  </form>
 				</div>
@@ -86,3 +87,60 @@
 	</div>
 	<!-- END CONTENT BODY -->
 </div>
+<script>
+$(function(){
+APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
+APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
+$("#slipDate").text(GetSlipDate());
+})
+function SuccessLoadTests(data)
+{
+	if(data && data.length > 0)
+	{
+		for(var i=0;i<data.length;i++)
+		{
+			$("#ddlTests").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType}).text(data[i].TestName));		
+		}
+	}
+	
+}
+function FailureLoadTests(err)
+{
+	
+}
+function SuccessLoadDoctors(data)
+{
+	if(data && data.length > 0){
+	for(var i=0;i<data.length;i++)
+	{
+	$("#ddlDoctors").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));		
+	}
+	}
+}
+function FailureLoadDoctors(err)
+{
+	
+}
+function SavePatientAndTest()
+{
+	var data = {
+		PatientName:$("#txtPatientName").val(),
+		PatientCnic:$("#txtCnicNo").val(),
+		RefferedBy:$("#ddlDoctors").val(),
+		Test:$("#ddlTests").val(),
+		TestFee:$("#txtFee").val(),
+	}
+	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/SavePatientAndTest", "SuccessSavePatientAndTest", "FailureSavePatientAndTest", "POST",data);	
+}
+function SuccessSavePatientAndTest(data)
+{
+	if(data){
+		var feilds = {"PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
+		PrintLabTestSlip($("#ddlTests option:selected").text(),"",feilds);
+	}
+}
+function FailureSavePatientAndTest(err)
+{
+	
+}
+</script>
