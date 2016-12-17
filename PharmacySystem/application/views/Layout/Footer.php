@@ -124,11 +124,14 @@
 	}
 function SuccessAddXRayItems(data)
 {
-	alert("success"+data);
+	if(data){
+		ShowSuccessToastMessage("XRay has been added.");
+		$("#stack1").modal("hide");
+	}
 }
 function FailureAddXRayItems(err)
 {
-	alert("failure"+err)
+	ShowErrorToastMessage("An error occured saving XRay.");
 }
 
 

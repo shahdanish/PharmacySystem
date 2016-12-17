@@ -173,7 +173,7 @@ RoomNo:$("#ddlRoomNo").val()
 }
 function SuccessSavePatientInfo(data)
 {
-	
+	ShowSuccessToastMessage("Patient information saved successfully.");
 }
 function FailureSavePatientInfo(err)
 {

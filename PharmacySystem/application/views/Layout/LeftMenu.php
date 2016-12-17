@@ -52,7 +52,7 @@
 				</li>
 				<li class="nav-item start  ">
 
-					<a href="javascript:;" data-target="#stack1" data-toggle="modal" class="nav-link nav-toggle">
+					<a  data-target="#stack1" data-toggle="modal" class="nav-link nav-toggle">
 						<i class="icon-home"></i>
 						<span class="title">Add Xrays</span>
 						<span class="selected"></span>

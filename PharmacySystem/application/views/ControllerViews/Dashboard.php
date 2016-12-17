@@ -162,7 +162,7 @@
 					</div>
 					<div class="details">
 						<div class="number">
-							<span data-counter="counterup" data-value="1000">0</span>
+							<span id="spanTotalXray">0</span>
 						</div>
 						<div class="desc"> Total Xrays Files </div>
 					</div>
@@ -528,6 +528,7 @@ function SuccessLoadTokenID(data)
 	$("#dailyTokenCount").html(data[0].DailyTokenCount);
 	$("#monthlyTokenCount").html(data[0].MonthlyTokenCount);
 	$("#spanPatientsAdmit").html(data[0].AdmitPatients);
+	$("#spanTotalXray").html(data[0].ItemQuantity);
 	//$("#spanPatientsAdmit").attr({"data-value":data[0].AdmitPatients,"data-counter":"counterup"});
 	
 }

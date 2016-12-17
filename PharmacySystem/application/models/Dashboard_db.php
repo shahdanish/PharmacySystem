@@ -5,29 +5,29 @@ class Dashboard_db extends CI_Model {
 	
 	public function LoadTokenCount()
 	{
-		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients)';
+		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients, (select ItemQuantity from tblinventory where itemID = 1) ItemQuantity)';
 		return $this->db->query($queryText)->result();
 	}
 	public function AddXRays($Items,$UserId)
 	{
-		
-		$queryAddBatch = "set @batchNo = (select count(*) from tblproductbatch where BatchNo = CONCAT('x_',Month(CURDATE()),DAY(CURDATE())));\r\n".
-						  " set @batchNo = @batchNo + 1;\r\n".
-						  " set @productbatchNo = CONCAT('x_',@batchNo,'_');\r\n".
-						  " set @productbatchNo = CONCAT(@productbatchNo,Month(CURDATE()),DAY(CURDATE()));\r\n".
-						  " Insert into tblproductbatch (BatchNo,BatchQuantity,ExpiryDate,ItemId) VALUES (@productbatchNo,".$Items.",Now(),1);";
-		
+		$productBatch = 'x_'.date("m").date("d");
+		$queryAddBatch = "select count(*) As BatchNo from tblproductbatch where BatchNo = '".$productBatch."'";
 		$data = $this->db->query($queryAddBatch)->result();
+		$productBatch = $data[0]->BatchNo + 1;
+		$productBatch = 'X_'.$productBatch.'_'.date("m").date("d");
+		$queryAddBatch = " Insert into tblproductbatch (BatchNo,BatchQuantity,ExpiryDate,ItemId) VALUES ('".$productBatch."',".$Items.",Now(),1);";
+		
+		$this->db->query($queryAddBatch);
 		
 		$queryItemExists = 'SELECT ItemId from tblinventory where itemID = 1';
 		$result = $this->db->query($queryItemExists)->result();				  
 		
 		$QueryItemQuantity="";
-		if($result->num_rows > 0)
+		if(count($result) > 0)
 			$QueryItemQuantity = "Update tblinventory set ItemQuantity = (itemQuantity + ".$Items."),UpdatedBy = ".$UserId.",UpdatedAt = NOW();";
 		else
 			$QueryItemQuantity = "Insert into tblinventory(ItemID,AddedDate,AddedBy,ItemQuantity) values(1,NOW(),".$UserId.",".$Items.");";
-		$addBatch = $this->db->query($QueryItemQuantity)->result();
+		$addBatch = $this->db->query($QueryItemQuantity);
 		return $addBatch;
 	}
 	function LoadTestTypes()

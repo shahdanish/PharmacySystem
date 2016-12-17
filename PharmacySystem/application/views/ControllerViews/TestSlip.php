@@ -135,6 +135,7 @@ function SavePatientAndTest()
 function SuccessSavePatientAndTest(data)
 {
 	if(data){
+		ShowSuccessToastMessage("Test information saved successfully.");
 		var feilds = {"PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
 		PrintLabTestSlip($("#ddlTests option:selected").text(),"",feilds);
 	}
