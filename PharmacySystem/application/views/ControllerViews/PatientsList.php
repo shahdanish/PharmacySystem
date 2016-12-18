@@ -11,7 +11,16 @@
 					<i class="fa fa-angle-right"></i>
 				</li>
 				<li>
-					<span>Patients List</span>
+					<a href="index.html">Patients List</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li class="active">
+					<a href="index.html">Admit Patients List</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li>
+					<a href="index.html">Discharged Patients List</a>
+					
 				</li>
 			</ul>
 

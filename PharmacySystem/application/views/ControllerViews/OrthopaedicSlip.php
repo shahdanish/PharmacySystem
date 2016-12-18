@@ -108,9 +108,10 @@ function FailureLoadTokenID(err)
 				success: function(res) {
 					debugger;
 					if (res) {
-						debugger;
-						// Show Entered Value
-						
+						ShowSuccessToastMessage("Token generated successfully.");
+						var feilds = {"Date":$("#tokenDate").text(),"TokenNo":$("#spanTokenNum").text(), "PatientName":$("#PatientName").val(),"Fee":$("#FeesRecieved").val()}
+						PrintLabTestSlip("Orthopaedic slip",feilds);
+						location.reload(true);
 					}
 				},
 				error: function(err) {

@@ -1,0 +1,41 @@
+.container{
+	width:100%;
+	float:left;
+}
+.slipContainer
+{
+	width:30%;
+	float:left;
+}
+.slipLogo
+{
+	width:30%;
+	float:left;
+}
+.slipHeader
+{
+	width:70%;
+	float:left;
+}
+.slipFeild
+{
+	width:100%;
+	float:left;
+	padding-top:10px;
+	
+}
+.slipFeildTitle
+{
+	width:50%;
+	float:left;
+}
+.slipFeildValue
+{
+	width:50%;
+	float:left;
+	text-align:right;
+}
+.imgLogoPrint{
+	width:90px;
+	height:90px;
+}

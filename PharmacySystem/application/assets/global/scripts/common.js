@@ -3,6 +3,7 @@ var currentPage = 1;
 var itemsOnPage = 20;
 var dataTable = null;
 var ajaxCallCounter = 0;
+var slipPrintStyle = ".container{width:100%;float:left;}.slipContainer{width:50%;float:left;}.slipLogo{width:30%;float:left;}.slipHeader{width:70%;float:left;}.slipFeild{width:100%;float:left;padding-top:10px;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
 $(document).ready(function () {
     try {
         $(document).ajaxSend(function (event, request, settings) {
@@ -242,19 +243,24 @@ function CheckMaxLengthForNumberTextboxes() {
         }
     });
 }
-function PrintLabTestSlip(title,html,feilds)
+
+function PrintLabTestSlip(title,feilds)
 {
-	var mywindow = window.open('', 'my div', 'height=400,width=600');
-     mywindow.document.write('<html><head><title>my div</title>');
+	var mywindow = window.open('', '_blank');
+     mywindow.document.write('<html><head><title>'+title+'</title>');
+	 //mywindow.document.write('<link rel="stylesheet" media="screen" href="../../application/assets/global/css/Print.css" type="text/css" />');
      mywindow.document.write('</head><body>');
-        
-	
-	 for(var i=0;i<Object.keys(feilds).length;i++)
-	 {
-		mywindow.document.write("<strong>"+Object.keys(feilds)[i]+" :</strong>"+Object.values(feilds)[i]);
+    mywindow.document.write("<style>"+ slipPrintStyle+"</style>");    
+	var html="<div class='slipContainer'>"+
+	"<div class='slipLogo'><img src='../../application/assets/global/img/logomain.png' alt='logo' class='imgLogoPrint' /></div><div class='slipHeader'><h3>MILLAT ORTHOPAEDIC & TRAUMA SURGERY HOSPITAL</h3></div>";
+	for(var i=0;i<Object.keys(feilds).length;i++)
+	{
+		html += "<div class='slipFeild'><div class='slipFeildTitle'><strong>"+Object.keys(feilds)[i]+" :</strong></div><div class='slipFeildvalue'>"+Object.values(feilds)[i]+"</div></div>";
 	}
-		
-     mywindow.document.write('</body></html>');
-	 mywindow.print();
-     mywindow.close();
+	html +="</div>";
+	
+	mywindow.document.write(html);
+	mywindow.document.write('</body></html>');
+	mywindow.print();
+    mywindow.close();
 }

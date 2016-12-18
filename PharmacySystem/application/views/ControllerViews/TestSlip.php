@@ -44,7 +44,7 @@
 					</div>
 					<div class="actions">
 						<a class="btn btn-default" href="javascript:;">
-							Date: <strong id="slipDate"></strong>
+							Date: <strong><span id="slipDate"></span></strong>
 						</a>
 
 					</div>
@@ -136,8 +136,9 @@ function SuccessSavePatientAndTest(data)
 {
 	if(data){
 		ShowSuccessToastMessage("Test information saved successfully.");
-		var feilds = {"PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
-		PrintLabTestSlip($("#ddlTests option:selected").text(),"",feilds);
+		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
+		PrintLabTestSlip($("#ddlTests option:selected").text(),feilds);
+		location.reload(true);
 	}
 }
 function FailureSavePatientAndTest(err)
