@@ -64,5 +64,9 @@ class Dashboard extends MY_Controller
 		$result = $this->Dashboard_db->AddXRays($this->input->post("Items"),$this->session->userdata["logged_in"]["userID"]);
 		echo json_encode($result);
 	}
-	
+	public function LoadVisitors()
+	{
+		$result = $this->Dashboard_db->LoadVisitors($this->input->get("VisitorType"));
+		echo json_encode($result);
+	}
 }

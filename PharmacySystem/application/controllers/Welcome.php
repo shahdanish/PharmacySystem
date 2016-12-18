@@ -23,4 +23,9 @@ class Welcome extends MY_Controller {
 		$this->middle = 'Dashboard'; // passing middle to function. change this for different views.
 		$this->layout();
 	}
+	public function VisitorsList()
+	{
+		$this->middle = 'VisitorsList'; // passing middle to function. change this for different views.
+		$this->layout();
+	}
 }

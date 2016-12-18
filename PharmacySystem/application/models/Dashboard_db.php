@@ -5,7 +5,7 @@ class Dashboard_db extends CI_Model {
 	
 	public function LoadTokenCount()
 	{
-		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients, (select ItemQuantity from tblinventory where itemID = 1) ItemQuantity)';
+		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients, (select ItemQuantity from tblinventory where itemID = 1) ItemQuantity,(select Count(*) LabTests from tblPatientTests Where Month(TestDate) = '.date("m").') LabTests)';
 		return $this->db->query($queryText)->result();
 	}
 	public function AddXRays($Items,$UserId)
@@ -49,6 +49,15 @@ class Dashboard_db extends CI_Model {
 	function LoadTests()
 	{
 		$query="Select * from tblTests Where IFNULL(IsDeleted,0)=0";
+		return $this->db->query($query)->result();
+	}
+	function LoadVisitors($VisitorType)
+	{
+		$query="Select * from tblToken Where ";
+		if($VisitorType=="d")
+			$query = $query."Date(TokenDate)=".date("d");
+		else
+			$query = $query."Month(TokenDate)=".date("m");
 		return $this->db->query($query)->result();
 	}
 }

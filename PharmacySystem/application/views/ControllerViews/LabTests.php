@@ -119,6 +119,8 @@ function LoadTests()
 }
 function SuccessLoadTests(data)
 {
+	if(data && data.length > 0){
+	RemoveDataTable("tblTests");
 	$("#tblTests tbody").html("");
 	for(var i=0;i<data.length;i++)
 	{
@@ -128,6 +130,7 @@ function SuccessLoadTests(data)
 	}
 	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
 	BindDataTable("tblTests",columns);
+	}
 	$("#divDeleteTest").modal("hide");
 	$("#divAddTest").modal("hide");
 }

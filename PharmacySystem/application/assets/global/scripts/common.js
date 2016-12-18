@@ -85,10 +85,11 @@ function UnBlockUI() {
     }
 
 }
-function APICall(urlVar, SuccessMethod, FailureMethod, Type, Data) {
+function APICall(urlVar, SuccessMethod, FailureMethod, Type, Data,global) {
     $.ajax({
         type: Type,
         url: urlVar,
+		global:global,
         dataType: 'json',
         data: Data,
         success: window[SuccessMethod],
@@ -247,7 +248,7 @@ function PrintLabTestSlip(title,html,feilds)
      mywindow.document.write('<html><head><title>my div</title>');
      mywindow.document.write('</head><body>');
         
-
+	
 	 for(var i=0;i<Object.keys(feilds).length;i++)
 	 {
 		mywindow.document.write("<strong>"+Object.keys(feilds)[i]+" :</strong>"+Object.values(feilds)[i]);
