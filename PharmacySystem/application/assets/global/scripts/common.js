@@ -203,7 +203,8 @@ function BindDataTable(tblId, columns) {
     
     $('#' + tblId).dataTable().fnDestroy();
     dataTable = $('#' + tblId).DataTable({
-        "columns": columns
+        "columns": columns,
+		"iDisplayLength":50
     });
 
 }

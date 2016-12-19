@@ -58,7 +58,8 @@ class SlipController extends MY_Controller
 				'PatientCNIC' => $this->input->post("PatientCnic"),
 				'RefferedBy' => $this->input->post("RefferedBy"),
 				'TestID' => $this->input->post("Test"),
-				'TestFee' => $this->input->post("TestFee")
+				'TestFee' => $this->input->post("TestFee"),
+				'TestType'=>$this->input->post("TestType")
 			);
 		echo json_encode($this->TestSlip_db->SavePatientAndTest($data));
 	}

@@ -14,7 +14,12 @@ Class TestSlip_db extends CI_Model {
 		$patientID =  $this->db->query($query)->result();
 		}
 		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["TestID"].'"); ';		
-		return $this->db->query($query);
+		$result = $this->db->query($query);
+		if($data["TestType"]==1)
+			$query = "Update tblInventory set ItemQuantity = ItemQuantity - 1 where itemID = 1";
+		$result = $this->db->query($query);
+		return $result;
+		
 		
 	}
 	
