@@ -139,7 +139,7 @@ function SuccessSavePatientAndTest(data)
 		ShowSuccessToastMessage("Test information saved successfully.");
 		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
 		PrintLabTestSlip($("#ddlTests option:selected").text(),feilds);
-		//location.reload(true);
+		location.reload(true);
 	}
 }
 function FailureSavePatientAndTest(err)
