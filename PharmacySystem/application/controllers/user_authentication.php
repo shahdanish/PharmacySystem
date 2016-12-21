@@ -90,7 +90,10 @@ Class User_Authentication extends MY_Controller {
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $session_data);
-					redirect('Welcome/index');
+					if($result[0]->UserRole==2)
+						redirect('Dashboard/OrthopaedicSlip');
+					else
+						redirect('Welcome/index');
 					// $this->middle = 'Dashboard';
 					// $this->layout();
 				}
