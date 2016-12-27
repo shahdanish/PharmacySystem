@@ -90,6 +90,16 @@
 					</a>
 
 				</li>
+				<li class="nav-item start  ">
+
+					<a href= "<?php echo site_url('InventoryController/Index');?>" class="nav-link nav-toggle">
+						<i class="icon-home"></i>
+						<span class="title">Inventory</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+
+				</li>
 			<?php } ?> 
 
 	  </ul>
