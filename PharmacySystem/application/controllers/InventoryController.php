@@ -30,6 +30,12 @@ class InventoryController extends MY_Controller
 		$this->middle = 'InventoryList';
 		$this->layout();
 	}
+	public function Inventory()
+	{
+		
+		$this->middle = 'Inventory';
+		$this->layout();
+	}
 	
 	public function SaveInventoryItem()
 	{	
@@ -52,6 +58,11 @@ class InventoryController extends MY_Controller
 		$result = $this->Inventory_db->DeleteInventoryItem($this->input->post("itemID"));
 		echo json_encode($result);
 		
+	}
+	public function AddInventory()
+	{
+		$result = $this->Inventory_db->AddInventory($this->input->post("ItemID"),$this->session->userdata["logged_in"]["userID"],$this->input->post("ItemQuantity"),$this->input->post("ItemName"));
+		echo json_encode($result);
 	}
 }
 ?>

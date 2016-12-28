@@ -308,6 +308,9 @@ function SuccessLoadTokenID(data)
 	$("#dailyTokenCount").html(data[0].DailyTokenCount);
 	$("#monthlyTokenCount").html(data[0].MonthlyTokenCount);
 	$("#spanPatientsAdmit").html(data[0].AdmitPatients);
+	if(data[0].ItemQuantity==null)
+	$("#spanTotalXray").html("0");
+	else	
 	$("#spanTotalXray").html(data[0].ItemQuantity);
 	$("#spanLabTests").html(data[0].LabTests);
 	//$("#spanPatientsAdmit").attr({"data-value":data[0].AdmitPatients,"data-counter":"counterup"});

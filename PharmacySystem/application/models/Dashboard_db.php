@@ -5,7 +5,7 @@ class Dashboard_db extends CI_Model {
 	
 	public function LoadTokenCount()
 	{
-		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients, (select ItemQuantity from tblinventory where itemID = 1) ItemQuantity,(select Count(*) LabTests from tblPatientTests Where Month(TestDate) = '.date("m").') LabTests)';
+		$queryText = 'select * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) MonthlyTokenCount from tbltoken where Month(TokenDate) = Month(CURDATE()))MonthlyCount, (SELECT Count(*) AdmitPatients FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0) AdmitPatients, (select Max(ItemQuantity) ItemQuantity from tblinventory where itemID = 1) ItemQuantity,(select Count(*) LabTests from tblPatientTests Where Month(TestDate) = '.date("m").') LabTests)';
 		return $this->db->query($queryText)->result();
 	}
 	public function AddXRays($Items,$UserId)
