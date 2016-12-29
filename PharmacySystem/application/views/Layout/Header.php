@@ -21,6 +21,7 @@
 <!-- BEGIN THEME GLOBAL STYLES -->
 <link href="<?php echo base_url();?>application/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url();?>application/assets/global/css/Typehead.css" rel="stylesheet" type="text/css" />
 <!-- END THEME GLOBAL STYLES -->
 <!-- BEGIN THEME LAYOUT STYLES -->
 <link href="<?php echo base_url();?>application/assets/layouts/layout2/css/layout.css" rel="stylesheet" type="text/css" />
@@ -75,3 +76,4 @@
 <script src="<?php echo base_url();?>application/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/scripts/Typehead.js" type="text/javascript"></script>

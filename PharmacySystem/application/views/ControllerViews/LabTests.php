@@ -30,7 +30,7 @@
 									<tr>
 										<th>Sr.</th>
 										<th>Name</th>
-										<th>Test Type</th>
+										
 										<th>Fee</th>
 										<th></th>
 									</tr>
@@ -51,14 +51,7 @@
                     <h4 class="modal-title">Add Test</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Select Test Type</h4>
-                            <p>
-                                <select id="ddlTestType" class="form-control">
-								</select>
-						</div>
-                    </div>
+                    
 					<div class="row">
                         <div class="col-md-12">
                             <h4>Enter Test Name</h4>
@@ -125,10 +118,10 @@ function SuccessLoadTests(data)
 	for(var i=0;i<data.length;i++)
 	{
 		var testObject = JSON.stringify({TestID:data[i].TestID,TestName:data[i].TestName,TestType:data[i].Id,TestFee:data[i].TestFee});
-		var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].TestName+"</td><td>"+data[i].TestType+"</td><td>"+data[i].TestFee+"</td><td><a title='Edit' onclick='EditLabTest("+testObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteLabTest("+data[i].TestID+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
+		var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].TestName+"</td><td>"+data[i].TestFee+"</td><td><a title='Edit' onclick='EditLabTest("+testObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteLabTest("+data[i].TestID+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
 		$("#tblTests tbody").append(tr);
 	}
-	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
+	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
 	BindDataTable("tblTests",columns);
 	}
 	$("#divDeleteTest").modal("hide");
@@ -143,7 +136,7 @@ function AddTest()
 	var TestID = $("#btnAddTest").attr("TestID");
 	if(!TestID)
 		TestID=0;
-	var data = {TestType:$("#ddlTestType").val(),TestName:$("#txtTestName").val(),TestFee:$("#txtTestFee").val(),TestId:TestID};
+	var data = {TestType:0,TestName:$("#txtTestName").val(),TestFee:$("#txtTestFee").val(),TestId:TestID};
 	APICall("<?php echo base_url(); ?>" + "index.php/LabTestsController/AddTest", "SuccessAddTest", "FailureAddTest", "POST",data);
 }
 function SuccessAddTest(data)

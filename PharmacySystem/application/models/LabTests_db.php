@@ -30,7 +30,7 @@ class LabTests_db extends CI_Model {
 	}
 	function LoadTests()
 	{
-		$query="Select * from tblTests t join tblTestTypes tt on t.TestType = tt.Id Where IFNULL(t.IsDeleted,0)=0";
+		$query="Select * from tblTests t Where IFNULL(t.IsDeleted,0)=0";
 		return $this->db->query($query)->result();
 	}
 	function DeleteLabTest($TestID)

@@ -17,6 +17,11 @@ Class Inventory_db extends CI_Model {
 		$query = 'Select * from tblInventoryItems Where IsActive=1 And ItemID!=1';
 		return $this->db->query($query)->result();
 	}
+	public function LoadInventoryItemsByName()
+	{
+		$query = 'Select ItemID,ItemName,ItemPrice from tblInventoryItems Where Ifnull(IsActive,1)=1';
+		return $this->db->query($query)->result();
+	}
 	public function DeleteInventoryItem($itemId)
 	{
 		$query = 'Update tblInventoryItems set isactive = 0 Where ItemID = '.$itemId;

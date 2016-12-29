@@ -53,6 +53,11 @@ class InventoryController extends MY_Controller
 		$result = $this->Inventory_db->LoadInventoryItems();
 		echo json_encode($result);
 	}
+	public function LoadInventoryItemsByName()
+	{
+		$result = $this->Inventory_db->LoadInventoryItemsByName();
+		echo json_encode($result);
+	}
 	public function DeleteInventoryItem()
 	{
 		$result = $this->Inventory_db->DeleteInventoryItem($this->input->post("itemID"));
