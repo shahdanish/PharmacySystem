@@ -14,37 +14,56 @@
 					<a href="index.html">Inventory List</a>
 					<i class="fa fa-angle-right"></i>
 				</li>
-				
+
 			</ul>
 
 		</div>
-<div class="portlet-body">
-<div class="row">
-<div class="col-lg-12">
-<input type="button" class="btn btn-primary pull-right" value="Add Item" onclick="ShowAddItemModal()" />
-</div>
-</div>
-						<div class="table-scrollable">
-							<table class="table table-hover" id="tblInventoryItems">
+		<div class="clearfix"></div>
+		<!-- END DASHBOARD STATS 1-->
+		<div class="row">
+
+			<div class="col-md-12">
+				<!-- BEGIN SAMPLE TABLE PORTLET-->
+				<div class="portlet light ">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-hospital-o font-green"></i>
+							<span class="caption-subject font-green bold uppercase">Inventory List </span>
+						</div>
+						<div class="addbtn ">
+							<a href="#" class="btn btn-danger"  onclick="ShowAddItemModal()" >	<i class="fa fa-plus"></i> Add Item</a>
+						</div>
+
+					</div>
+					<div class="portlet-body">
+						<div class="">
+							<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable" id="tblInventoryItems">
 								<thead>
 									<tr>
 									<th>Sr.</th>
 										<th>Item Name</th>
 										<th>Item Price</th>
 										<th></th>
-										
-	
+
+
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
 					</div>
+				</div>
+				<!-- END SAMPLE TABLE PORTLET-->
+			</div>
+
+		</div>
+
+
 					</div>
 					</div>
-					
+
 					<div id="AddInventoryItem" class="modal fade" tabindex="-1" data-width="400">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -57,7 +76,7 @@
                         <div class="col-md-12">
                             <h4>Item Name</h4>
                             <p>
-                                <input type="text" id="txtItemName" name="txtItemName" class="col-md-12 form-control" placeholder="Enter Name"> 
+                                <input type="text" id="txtItemName" name="txtItemName" class="col-md-12 form-control" placeholder="Enter Name">
 								</p>
 
                         </div>
@@ -66,7 +85,7 @@
                         <div class="col-md-12">
                             <h4>Item Price</h4>
                             <p>
-                                <input type="number" id="txtPrice" name="txtPrice" class="col-md-12 form-control" placeholder="Enter Price"> 
+                                <input type="number" id="txtPrice" name="txtPrice" class="col-md-12 form-control" placeholder="Enter Price">
 								</p>
 
                         </div>
@@ -80,7 +99,7 @@
             </div>
         </div>
     </div>
-	
+
 					<div id="DeletInventoryItem" class="modal fade" tabindex="-1" data-width="400">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -91,14 +110,14 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            
+
                             <p>
                                 Are you sure you want to delete selected item ?
 								</p>
 
                         </div>
                     </div>
-					
+
 
                 </div>
                 <div class="modal-footer">
@@ -112,7 +131,7 @@
 <script>
 $(function(){
 	LoadItems();
-	 $("#AddInventoryItem").on("shown.bs.modal", function () { 
+	 $("#AddInventoryItem").on("shown.bs.modal", function () {
 	 if(!$("#btnAddItem").attr("itemId"))
 	 {
      $("#txtItemName").val("");
@@ -131,17 +150,17 @@ function SuccessLoadInventoryItems(data)
 	for(var i=0;i<data.length;i++)
 	{
 		var itemObject = JSON.stringify({ItemID:data[i].ItemId,ItemName:data[i].ItemName,ItemPrice:data[i].ItemPrice});
-		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].ItemPrice+"</td><td><a title='Edit' onclick='EditItem("+itemObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteItem("+data[i].ItemId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";	
-		$("#tblInventoryItems tbody").append(tr);	
+		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].ItemPrice+"</td><td><a title='Edit' onclick='EditItem("+itemObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteItem("+data[i].ItemId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
+		$("#tblInventoryItems tbody").append(tr);
 	}
-	
+
 	}
 	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
 	BindDataTable("tblInventoryItems",columns);
 }
 function FailureLoadInventoryItems(err)
 {
-	
+
 }
 function AddInventoryItem()
 {
@@ -164,11 +183,11 @@ function SuccessSaveInventoryItem(resp)
 }
 function FailureSaveInventoryItem()
 {
-	
+
 }
 function ConfirmDeleteItem(itemID)
 {
-	$("#DeletInventoryItem").modal("show");	
+	$("#DeletInventoryItem").modal("show");
 	$("#btnDeleteItem").attr("itemId",itemID);
 }
 function DeleteInventoryItem()
@@ -192,7 +211,7 @@ function EditItem(EditItem)
 	$("#btnAddItem").attr("itemId",EditItem.ItemID);
 	$("#txtItemName").val(EditItem.ItemName);
 	$("#txtPrice").val(EditItem.ItemPrice);
-	
+
 }
 function ShowAddItemModal()
 {

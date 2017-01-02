@@ -17,30 +17,50 @@
 			</div>
 			<div class="row">
 			<div class="col-md-12">
-<input type="button" id="btnShowAddTest" value="Add New Test" onclick="ShowAddTest()" class="btn green pull-right" />
-		
-		
+
 		</div>
 		</div>
-		
-<div class="portlet-body">
-						<div class="table-scrollable">
-							<table class="table table-hover" id="tblTests">
+		<div class="clearfix"></div>
+		<!-- END DASHBOARD STATS 1-->
+		<div class="row">
+
+			<div class="col-md-12">
+				<!-- BEGIN SAMPLE TABLE PORTLET-->
+				<div class="portlet light ">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-hospital-o font-green"></i>
+							<span class="caption-subject font-green bold uppercase">Lab Tests List </span>
+						</div>
+						<div class="addbtn ">
+							<a href="#" class="btn btn-danger"  id="btnShowAddTest"  onclick="ShowAddTest()">	<i class="fa fa-plus"></i> Add New Test</a>
+						</div>
+
+					</div>
+					<div class="portlet-body">
+						<div class="">
+							<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable" id="tblTests">
 								<thead>
 									<tr>
 										<th>Sr.</th>
 										<th>Name</th>
-										
+
 										<th>Fee</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
 					</div>
+				</div>
+				<!-- END SAMPLE TABLE PORTLET-->
+			</div>
+
+		</div>
+
 					</div>
 					</div>
 					<div id="divAddTest" class="modal fade" tabindex="-1" data-width="400">
@@ -51,7 +71,7 @@
                     <h4 class="modal-title">Add Test</h4>
                 </div>
                 <div class="modal-body">
-                    
+
 					<div class="row">
                         <div class="col-md-12">
                             <h4>Enter Test Name</h4>
@@ -75,7 +95,7 @@
             </div>
         </div>
     </div>
-		
+
 	<div id="divDeleteTest" class="modal fade" tabindex="-1" data-width="400">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -84,10 +104,10 @@
                     <h4 class="modal-title">Delete Test</h4>
                 </div>
                 <div class="modal-body">
-                    
+
 					<div class="row">
                         <div class="col-md-12">
-                            
+
                             <p>
                             Are you sure you want to delete the selected test ?
 						</div>
@@ -100,7 +120,7 @@
             </div>
         </div>
     </div>
-					
+
 <script>
 $(function(){
 	APICall("<?php echo base_url(); ?>" + "index.php/LabTestsController/LoadTestTypes", "SuccessLoadTestTypes", "FailureLoadTestTypes", "GET");
@@ -129,7 +149,7 @@ function SuccessLoadTests(data)
 }
 function FailureLoadTests(err)
 {
-	
+
 }
 function AddTest()
 {
@@ -148,14 +168,14 @@ function SuccessAddTest(data)
 }
 function FailureAddTest(err)
 {
-	
+
 }
 function SuccessLoadTestTypes(data)
 {
 	for(var i=0;i<data.length;i++){
 	$("#ddlTestType").append($("<option></option>").attr("value",data[i].Id).text(data[i].TestType));
 	}
-	
+
 }
 function ShowAddTest()
 {
@@ -184,6 +204,6 @@ function EditLabTest(obj)
 	$("#txtTestName").val(obj.TestName);
 	$("#txtTestFee").val(obj.TestFee);
 	$("#btnAddTest").attr("TestID",obj.TestID);
-	$("#divAddTest").modal("show");	
+	$("#divAddTest").modal("show");
 }
 </script>

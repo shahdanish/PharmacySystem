@@ -676,7 +676,7 @@ Page sidebar
         border: 0px;
         padding: 17px 15px 15px 15px;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 300;
         text-align: center; }
         .page-sidebar .page-sidebar-menu > li > a > .title,
@@ -713,7 +713,7 @@ Page sidebar
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a {
         border: none;
         text-shadow: none;
-        font-size: 13px; }
+        font-size: 16px; }
         .page-sidebar .page-sidebar-menu > li.active > a > .selected,
         .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > .selected {
           background-image: none;
@@ -1313,7 +1313,7 @@ Page footer
   .page-footer:after {
     clear: both; }
   .page-footer .page-footer-inner {
-    float: left;
+    float: right;
     display: inline-block; }
   .page-footer .page-footer-tools {
     float: right;

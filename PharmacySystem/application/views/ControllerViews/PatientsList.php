@@ -20,14 +20,29 @@
 				</li>
 				<li>
 					<a href="index.html">Discharged Patients List</a>
-					
+
 				</li>
 			</ul>
 
 		</div>
-<div class="portlet-body">
-						<div class="table-scrollable">
-							<table class="table table-hover" id="tblPatientsAdmitted">
+		<div class="clearfix"></div>
+		<!-- END DASHBOARD STATS 1-->
+		<div class="row">
+
+			<div class="col-md-12">
+				<!-- BEGIN SAMPLE TABLE PORTLET-->
+				<div class="portlet light ">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-hospital-o font-green"></i>
+							<span class="caption-subject font-green bold uppercase">Discharged Patients List </span>
+						</div>
+
+
+					</div>
+					<div class="portlet-body">
+						<div class="">
+							<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable" id="tblPatientsAdmitted">
 								<thead>
 									<tr>
 									<th>Sr.</th>
@@ -38,17 +53,23 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
 					</div>
+				</div>
+				<!-- END SAMPLE TABLE PORTLET-->
+			</div>
+
+		</div>
+
 					</div>
 					</div>
-					
+
 					<script>
 					$(function(){
-						
+
 						APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/LoadPatients/0", "SuccessLoadPatients", "FailureLoadPatients", "GET");
 					});
 					function SuccessLoadPatients(data)
@@ -56,8 +77,8 @@
 	if(data && data.length > 0){
 	for(var i=0;i<data.length;i++)
 	{
-		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].PatientName+"</td><td>"+data[i].AdmissionDate+"</td><td>"+data[i].AdmitReason+"</td><td><a href=Discharge?PID="+data[i].PatientID+"&AID="+data[i].Id+">Discharge</a></td></tr>";	
-		$("#tblPatientsAdmitted tbody").append(tr);	
+		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].PatientName+"</td><td>"+data[i].AdmissionDate+"</td><td>"+data[i].AdmitReason+"</td><td><a href=Discharge?PID="+data[i].PatientID+"&AID="+data[i].Id+">Discharge</a></td></tr>";
+		$("#tblPatientsAdmitted tbody").append(tr);
 	}
 	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
 	BindDataTable("tblPatientsAdmitted",columns);
@@ -65,6 +86,6 @@
 }
 function FailureLoadPatients(err)
 {
-	
+
 }
 					</script>

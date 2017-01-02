@@ -26,13 +26,8 @@
 				<div class="portlet box blue">
 					<div class="portlet-title">
 						<div class="caption">
-							<i class="fa fa-gift"></i>Inpatient Medical Bill</div>
-						<div class="tools">
-							<a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-							<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="reload" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="remove" data-original-title="" title=""> </a>
-						</div>
+							<i class="fa fa-medkit"></i>Inpatient Medical Bill</div>
+
 					</div>
 					<div class="portlet-body form">
 						<!-- BEGIN FORM-->
@@ -88,7 +83,7 @@
 										<div class="form-group">
 											<label class="control-label">Reffered By</label>
 											<select class="form-control" id="ddlRefferedBy">
-											  
+
 											</select>
 
 										</div>
@@ -108,8 +103,8 @@
 
 										</div>
 									</div>
-									
-									
+
+
 									<!--/span-->
 								</div>
 								<!--/row-->
@@ -126,7 +121,7 @@
 								<button type="button" class="btn blue" onclick="SavePatientInformation()">
 													<i class="fa fa-check"></i> Save</button>
 								</div>
-								
+
 	</div>
 </div>
 <!-- END QUICK SIDEBAR -->
@@ -139,7 +134,7 @@
 
 <script>
 $(function(){
-	
+
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");
 });
 function SuccessLoadDoctors(data)
@@ -147,17 +142,17 @@ function SuccessLoadDoctors(data)
 	if(data && data.length > 0){
 	for(var i=0;i<data.length;i++)
 	{
-	$("#ddlRefferedBy").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));		
+	$("#ddlRefferedBy").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));
 	}
 	}
 }
 function FailureLoadDoctors(err)
 {
-	
+
 }
 function SavePatientInformation()
 {
-	var patientInfo = 
+	var patientInfo =
 	{
 	PatientName:$("#txtPatientName").val(),
 CellNo:$("#txtCellNo").val(),
@@ -167,7 +162,7 @@ Address:$("#txtAddress").val(),
 RefferedBy:$("#ddlRefferedBy").val(),
 AdmitReason:$("#txtAdmitReason").val(),
 AdvanceFee:$("#txtAdvanceFee").val(),
-RoomNo:$("#ddlRoomNo").val()	
+RoomNo:$("#ddlRoomNo").val()
 	};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatient", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
 }
@@ -177,6 +172,6 @@ function SuccessSavePatientInfo(data)
 }
 function FailureSavePatientInfo(err)
 {
-	
+
 }
 </script>

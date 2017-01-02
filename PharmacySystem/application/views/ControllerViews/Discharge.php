@@ -98,8 +98,8 @@
 
 										</div>
 									</div>
-									
-									
+
+
 									<!--/span-->
 								</div>
 								<!--/row-->
@@ -117,8 +117,8 @@
 										</div>
 										</div>
 								</div>
-								
-								
+
+
 								<!--/row-->
 								<h1 class="form-section">Add Inventory Items</h1>
 								<div class="row">
@@ -135,11 +135,11 @@
 
 										</div>
 									</div>
-									
+
 									<!--/span-->
 								</div>
 								<h1 class="form-section">Patient Bill</h1>
-								
+
 								<div class="row" id="divPatientBill">
 									<div class="col-md-4">
 										<div class="form-group">
@@ -175,7 +175,7 @@
 										<div class="form-group">
 											<label class="control-label">Select Consultant</label>
 											<select class="form-control" id="ddlDoctors">
-											  
+
 											</select>
 
 										</div>
@@ -418,7 +418,7 @@
 									</div>
 									<!--/span-->
 								</div>
-								
+
 								<div class="row">
 								  <div class="col-sm-6">
 									<div class="form-group">
@@ -499,7 +499,7 @@ var patientId=0;
 var admissionId=0;
 var inventoryUsed=[];
 $(function(){
-	
+
 	patientId =  getUrlData()["pid"];
 	admissionId = getUrlData()["aid"];
 	if(!patientId)
@@ -510,7 +510,7 @@ $(function(){
 	var data = {PatientID:patientId,AdmissionID:admissionId};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/LoadPatientInfo", "SuccessLoadPatientInfo", "FailureLoadPatientInfo", "POST",data);
 	BindTypeAhead();
-	
+
 	$('#txtInventoryItem').on('typeahead:selected', function (e, obj) {
 	inventoryUsed.push({"ItemId":obj.ItemID,"ItemName":obj.ItemName,"ItemPrice":obj.ItemPrice});
 	AddItemsToBill(obj);
@@ -534,13 +534,13 @@ function SuccessLoadDoctors(data)
 	if(data && data.length > 0){
 	for(var i=0;i<data.length;i++)
 	{
-	$("#ddlDoctors").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));		
+	$("#ddlDoctors").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));
 	}
 	}
 }
 function FailureLoadDoctors(err)
 {
-	
+
 }
 function SuccessLoadPatientInfo(data)
 {
@@ -561,11 +561,11 @@ function SuccessLoadPatientInfo(data)
 }
 function FailureLoadPatientInfo(err)
 {
-	
+
 }
 function SavePatientDischargeInformation()
 {
-	var patientInfo = 
+	var patientInfo =
 	{
 	PatientName:$("#txtPatientName").val(),
 CellNo:$("#txtCellNo").val(),
@@ -575,13 +575,13 @@ Address:$("#txtAddress").val(),
 RefferedBy:$("#ddlRefferedBy").val(),
 AdmitReason:$("#txtAdmitReason").val(),
 AdvanceFee:$("#txtAdvanceFee").val(),
-RoomNo:$("#ddlRoomNo").val()	
+RoomNo:$("#ddlRoomNo").val()
 	};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatient", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
 }
 function BindTypeAhead()
 {
-	
+
 	try {
         var dataSource = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('ItemId', 'ItemName','ItemPrice'),
@@ -598,7 +598,7 @@ function BindTypeAhead()
             source: dataSource,
             hint: false,
             highlight: true
-            
+
         },
         {
             limit: 10,
@@ -610,7 +610,7 @@ function BindTypeAhead()
             suggestion: function (data) {
                 return '<div>' + data.ItemName + '–' + data.ItemId + '</div>'
             },
-            
+
         });
     }
     catch (e) {
@@ -659,7 +659,7 @@ function CalcaulateConsultantFee()
 {
 	var visits = parseInt($("#txtConsultantVisits").val());
 	var fee = parseInt($("#txtConsultantFee").val());
-	
+
 	var totalFee = visits * fee;
 	if(isNaN(totalFee))
 		$("#txtTotalConsultantFee").val("0");
@@ -671,7 +671,7 @@ function CalcaulateRoomCharges()
 {
 	var days = parseInt($("#txtRoomDays").val());
 	var fee = parseInt($("#txtRoomCharges").val());
-	
+
 	var totalFee = days * fee;
 	if(isNaN(totalFee))
 		$("#txtTotalRoomCharges").val("0");
@@ -691,7 +691,7 @@ function CalculateTotalBill()
 	$(".mainTotal").each(function(){
 		if(parseInt($(this).val()) > 0)
 		totalBill = totalBill+ parseInt($(this).val());
-	
+
 	});
 	$("#txtBill").val(totalBill).trigger("change");
 }
@@ -702,8 +702,8 @@ function CalculateMainTotal()
 	var discount = parseInt($("#txtDiscount").val());
 	if(isNaN(discount))
 		discount = 0;
-	
+
 	var mainTotal = (parseInt(totalBill) + parseInt(advanceFee)) - parseInt(discount);
 	$("#txtMainTotal").val(mainTotal);
-} 
+}
 </script>

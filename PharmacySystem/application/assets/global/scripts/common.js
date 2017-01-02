@@ -250,7 +250,7 @@ function PrintLabTestSlip(title,feilds)
 {
 	var mywindow = window.open('', '_blank');
      mywindow.document.write('<html><head><title>'+title+'</title>');
-	 //mywindow.document.write('<link rel="stylesheet" media="screen" href="../../application/assets/global/css/Print.css" type="text/css" />');
+	// mywindow.document.write('<link rel="stylesheet" media="screen" href="../../application/assets/global/css/Print.css" type="text/css" />');
      mywindow.document.write('</head><body>');
     mywindow.document.write("<style>"+ slipPrintStyle+"</style>");    
 	var html="<div class='slipContainer'>"+

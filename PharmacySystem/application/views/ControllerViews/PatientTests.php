@@ -15,36 +15,50 @@
 				</li>
 			</ul>
 			</div>
-			
-		
-<div class="portlet-body">
-<div class="row">
-<div class="col-md-12">
-						<div class="table-responsive">
-							<table class="table table-hover" id="tblTests">
-								<thead>
-									<tr>
-										<th>Sr.</th>
-										<th>Name</th>
-										<th>CNIC</th>
-										<th>Test</th>
-										<th>Test Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
+
+
+					<div class="clearfix"></div>
+					<!-- END DASHBOARD STATS 1-->
+					<div class="row">
+						<div class="col-md-12">
+							<!-- BEGIN SAMPLE TABLE PORTLET-->
+							<div class="portlet light ">
+								<div class="portlet-title">
+									<div class="caption">
+										<i class="fa fa-medkit font-green"></i>
+										<span class="caption-subject font-green bold uppercase">Patient Tests List</span>
+									</div>
+								</div>
+								<div class="portlet-body">
+									<div class="">
+										<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable " id="tblTests">
+											<thead>
+												<tr>
+													<th>Sr.</th>
+													<th>Name</th>
+													<th>CNIC</th>
+													<th>Test</th>
+													<th>Test Date</th>
+												</tr>
+											</thead>
+											<tbody>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- END SAMPLE TABLE PORTLET-->
 						</div>
-						</div>
+
+					</div>
+
 					</div>
 					</div>
-					</div>
-					</div>
-					
+
 <script>
 $(function(){
-	
+
 	LoadPatientTests();
 });
 function LoadPatientTests()
@@ -60,11 +74,11 @@ function SuccessLoadPatientTests(data)
 		$("#tblTests tbody").append(tr);
 	}
 	var columns = [{"bSortable":false},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
-	BindDataTable("tblTests",columns);	
+	BindDataTable("tblTests",columns);
 }
 function FailureLoadPatientTests(err)
 {
-	
+
 }
 
 </script>
