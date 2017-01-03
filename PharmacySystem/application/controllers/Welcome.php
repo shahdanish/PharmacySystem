@@ -21,19 +21,19 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
 		if(isset($this->session->userdata["logged_in"])){
-		if($this->session->userdata["logged_in"]["userrole"]==1){
-		$this->middle = 'Dashboard'; // passing middle to function. change this for different views.
-		$this->layout();
-		}
-		else
-		{
-		$this->middle = 'VisitorsList'; // passing middle to function. change this for different views.
-		$this->layout();
-		}
+			if($this->session->userdata["logged_in"]["userrole"]==1){
+				$this->middle = 'Dashboard'; // passing middle to function. change this for different views.
+				$this->layout();
+			}
+			else
+			{
+				$this->middle = 'VisitorsList'; // passing middle to function. change this for different views.
+				$this->layout();
+			}
 		}
 		else{
 			$this->middle = 'login_form'; // passing middle to function. change this for different views.
-		$this->layout();
+			$this->layout();
 		}
 	}
 	public function VisitorsList()
