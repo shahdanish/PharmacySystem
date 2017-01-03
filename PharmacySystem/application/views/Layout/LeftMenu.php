@@ -41,6 +41,16 @@
 					</a>
 
 				</li>
+				 <li class="nav-item start">
+
+				  <a href= "<?php echo site_url('EmployeesController/Index');?>" class="nav-link nav-toggle">
+					<i class="fa fa-user-md"></i>
+					<span class="title">Employee</span>
+					<span class="selected"></span>
+					<span class="arrow open"></span>
+				  </a>
+
+				</li>
 			<?php } else { ?>
 				<li class="nav-item start">
 					<a href="javascript:;" class="nav-link nav-toggle">
@@ -79,7 +89,7 @@
 					</a>
 
 				</li>
-				<li class="nav-item start">
+        <li class="nav-item start">
 
 					<a href= "<?php echo site_url('LabTestsController/Index');?>" class="nav-link nav-toggle">
 						<i class="fa fa-user-md"></i>

@@ -30,7 +30,7 @@
 						</div>
 						<div class="desc"> Daily Visitors </div>
 					</div>
-					<a class="more" href="../Welcome/VisitorsList?type=m"> View more
+					<a class="more" href="../Welcome/VisitorsList?type=d"> View more
 							<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 				</div>
@@ -45,7 +45,7 @@
 							<span id="monthlyTokenCount"></span> </div>
 						<div class="desc"> Monthly Visitors </div>
 					</div>
-					<a class="more" href="javascript:;"> View more
+					<a class="more" href="../Welcome/VisitorsList?type=m"> View more
 							<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 				</div>
