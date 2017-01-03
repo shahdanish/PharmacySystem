@@ -58,12 +58,28 @@ class PatientAdmissionController extends MY_Controller
 	function SavePatientDischargeInfo()
 	{
 		$data = array(
-				'AdmissionID' => $this->input->post("PatientName"),
-				'DischargedBy' => $this->input->post("PatientCnic"),
-				'DischargeReason' => $this->input->post("RefferedBy")
+				'AdmissionID' => $this->input->post("AdmissionID"),
+				'DischargedBy' => $this->input->post("DischargedBy"),
+				'DischargeReason' => $this->input->post("DischargeReason"),
+				'AdmissionFee' => $this->input->post("AdmissionFee"),
+				'ConsultantFee' => $this->input->post("ConsultantFee"),
+				'NursingFee' => $this->input->post("NursingFee"),
+				'RoomFee' => $this->input->post("RoomFee"),
+				'AcFee' => $this->input->post("AcFee"),
+				'HeaterFee' => $this->input->post("HeaterFee"),
+				'OperationFee' => $this->input->post("OperationFee"),
+				'TheaterFee' => $this->input->post("TheaterFee"),
+				'AnaesthesiaFee' => $this->input->post("AnaesthesiaFee"),
+				'HardwareFee' => $this->input->post("HardwareFee"),
+				'MedicineFee' => $this->input->post("MedicineFee"),
+				'Total' => $this->input->post("Total"),
+				'Discount' => $this->input->post("Discount"),
+				'InventoryFee' => $this->input->post("InventoryFee"),
+				
+				
 				
 				);
-		$this->PatientAdmission_db->SavePatientDischargeInfo($data);
+		echo json_encode($this->PatientAdmission_db->SavePatientDischargeInfo($data));
 	}	
 	function LoadPatients()
 	{

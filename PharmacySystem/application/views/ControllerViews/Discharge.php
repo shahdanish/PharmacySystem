@@ -103,6 +103,7 @@
 									<!--/span-->
 								</div>
 								<!--/row-->
+								
 								<div class="row">
 								<div class="col-md-4">
 										<div class="form-group">
@@ -117,7 +118,25 @@
 										</div>
 										</div>
 								</div>
+								<h1 class="form-section">Discharge Info</h1>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Discharged By</label>
+											<select class="form-control" id="ddlDischargedBy">
 
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Discharge Reason</label>
+											<input type="text" id="txtDischargeReason" class="form-control" placeholder="Reason" maxlength="50">
+
+										</div>
+									</div>
+									
+									</div>
 
 								<!--/row-->
 								<h1 class="form-section">Add Inventory Items</h1>
@@ -535,6 +554,7 @@ function SuccessLoadDoctors(data)
 	for(var i=0;i<data.length;i++)
 	{
 	$("#ddlDoctors").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));
+	$("#ddlDischargedBy").append($("<option></option>").attr({"value":data[i].UserID}).text(data[i].UserName));
 	}
 	}
 }
@@ -565,19 +585,36 @@ function FailureLoadPatientInfo(err)
 }
 function SavePatientDischargeInformation()
 {
+	var inventoryFee = 0;
+	$(".invetoryItems").each(function(){
+	if(parseInt($(this).val()) > 0)
+		inventoryFee = inventoryFee + parseInt($(this).val());
+	});
 	var patientInfo =
 	{
-	PatientName:$("#txtPatientName").val(),
-CellNo:$("#txtCellNo").val(),
-PatientCNIC:$("#txtCnicNo").val(),
-Age:$("#txtAge").val(),
-Address:$("#txtAddress").val(),
-RefferedBy:$("#ddlRefferedBy").val(),
-AdmitReason:$("#txtAdmitReason").val(),
-AdvanceFee:$("#txtAdvanceFee").val(),
-RoomNo:$("#ddlRoomNo").val()
+	AdmissionFee:$("#txtTotalAdmissionFee").val(),
+	ConsultantFee:$("#txtTotalConsultantFee").val(),
+	NursingFee:$("#txtTotalNursingFee").val(),
+	RoomFee:$("#txtTotalRoomCharges").val(),
+	AcFee:$("#txtTotalAcCharges").val(),
+	HeaterFee:$("#txtTotalHeaterCharges").val(),
+	OperationFee:$("#txtTotalOperationFee").val(),
+	TheaterFee:$("#txtTotalTheaterCharges").val(),
+	AnaesthesiaFee:$("#txtTotalAnesthesiaFee").val(),
+	HardwareFee:$("#txtTotalHardwareFee").val(),
+	MedicineFee:$("#txtTotalMedFee").val(),
+	Total:$("#txtMainTotal").val(),
+	Discount:$("#txtDiscount").val(),
+	AdmissionID:admissionId,
+	DischargedBy:$("#ddlDischargedBy").val(),
+	DischargeReason:$("#txtDischargeReason").val(),
+	InventoryFee:inventoryFee
 	};
-	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatient", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
+	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatientDischargeInfo", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
+}
+function SuccessSavePatientInfo()
+{
+	ShowSuccessToastMessage("Patient discharge information saved successfully.");
 }
 function BindTypeAhead()
 {
@@ -640,7 +677,7 @@ function AddItemsToBill(obj)
 	"<div class='col-md-2'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Total</label>"+
-	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' class='form-control mainTotal' placeholder='Total' />"+
+	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' class='form-control mainTotal invetoryItems' placeholder='Total' />"+
 	"</div>"+
 	"</div>"+
 	"</div>";

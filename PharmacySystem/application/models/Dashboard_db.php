@@ -55,7 +55,7 @@ class Dashboard_db extends CI_Model {
 	{
 		$query="Select * from tblToken Where ";
 		if($VisitorType=="d")
-			$query = $query."Date(TokenDate)=".date("d");
+			$query = $query."Date(TokenDate)= DATE(CURDATE())";
 		else
 			$query = $query."Month(TokenDate)=".date("m");
 		return $this->db->query($query)->result();

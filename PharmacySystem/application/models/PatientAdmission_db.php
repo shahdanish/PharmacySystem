@@ -30,7 +30,9 @@ Class PatientAdmission_db extends CI_Model {
 	}
 	function SavePatientDischargeInfo($data)
 	{
-		$query = 'Update tblPatientAdmission Set DischargeDate = "'.date('Y-m-d H:i:s').'",DischargeReason = "'.$data["DischargeReason"].'",DischargedBy="'.date('Y-m-d H:i:s').'",IsDischarged=1 Where ID = "'.$data["AdmissionID"].'"';
+		$query = 'Update tblPatientAdmission Set DischargeDate = "'.date('Y-m-d H:i:s').'",DischargeReason = "'.$data["DischargeReason"].'",DischargedBy="'.$data["DischargedBy"].'",IsDischarged=1 Where ID = "'.$data["AdmissionID"].'"';
+		$this->db->query($query);
+		$query = 'Update tblPatientCharges Set TotalFee = "'.$data["Total"].'",AdmissionFee = "'.$data["AdmissionFee"].'",ConsultantFee = "'.$data["ConsultantFee"].'",NursingCharges = "'.$data["NursingFee"].'",RoomCharges = "'.$data["RoomFee"].'",AcCharges = "'.$data["AcFee"].'",HeaterCharges = "'.$data["HeaterFee"].'",OperationFee = "'.$data["OperationFee"].'",TheaterFee = "'.$data["TheaterFee"].'",AnaesthesiaFee = "'.$data["AnaesthesiaFee"].'",HardwareFee = "'.$data["HardwareFee"].'",OperationMedicines = "'.$data["MedicineFee"].'",Discount = "'.$data["Discount"].'",InventoryFee = "'.$data["InventoryFee"].'" Where AdmissionId =  "'.$data["AdmissionID"].'"';
 		return $this->db->query($query);
 	}	
 	function SavePatientBillOnDischarge($data)

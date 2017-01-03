@@ -71,6 +71,16 @@
 
 				<li class="nav-item start">
 
+					<a href= "<?php echo site_url('PatientAdmissionController/PatientsList');?>">
+						<i class="fa fa-user-md"></i>
+						<span class="title">Admit Patients</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+
+				</li>
+				<li class="nav-item start">
+
 					<a href= "<?php echo site_url('Dashboard/Inpatient');?>">
 						<i class="fa fa-user-md"></i>
 						<span class="title">Inpatient Form</span>
