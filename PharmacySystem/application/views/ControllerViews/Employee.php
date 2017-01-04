@@ -44,8 +44,10 @@
 									<tr>
 										<th>Sr.</th>
 										<th>First Name</th>
-										<th>Last Name</th>
+										<th>CNIC</th>
+										<th>Mobile No</th>
 										<th>Address</th>
+										<th>Salary</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -74,23 +76,38 @@
 
 					<div class="row">
                         <div class="col-md-12">
-                            <h4>Enter First Name</h4>
+                            <h4>Name</h4>
                             <p>
                                 <input type="text" id="txtFirstName" class="col-md-12 form-control" placeholder="Enter first name" maxlength="50"> </p>
 						</div>
                     </div>
 					<div class="row">
                         <div class="col-md-12">
-                            <h4>Enter Last Name</h4>
+                            <h4>Enter CNIC</h4>
                             <p>
-                                <input type="text" id="txtLastName" class="col-md-12 form-control" placeholder="Enter last name" maxlength="50"> </p>
+                                <input type="text" id="txtCNIC" class="col-md-12 form-control" placeholder="Enter CNIC" maxlength="50"> </p>
 						</div>
-
+					</div>
+					<div class="row">
+                        <div class="col-md-12">
+                            <h4>Enter Mobile No</h4>
+                            <p>
+                                <input type="text" id="txtMobileNo" class="col-md-12 form-control" placeholder="Enter Mobile No" maxlength="50"> </p>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-12">
 								<h4>Enter Address</h4>
 								<p>
 										<input type="text" id="txtAddress" class="col-md-12 form-control" placeholder="Enter Address" maxlength="50"> </p>
-</div>
+						</div>
+                    </div>
+					<div class="row">
+                        <div class="col-md-12">
+                            <h4>Salary</h4>
+                            <p>
+                                <input type="text" id="txtSalary" class="col-md-12 form-control" placeholder="Enter Salary" maxlength="150"> </p>
+						</div>
                     </div>
 
                 </div>
@@ -141,11 +158,11 @@ function SuccessLoadUser(data)
 	for(var i=0;i<data.length;i++)
 	{
 		debugger;
-		var userObject = JSON.stringify({UserId:data[i].UserId,FirstName:data[i].FirstName,LastName:data[i].LastName,Address:data[i].Address});
-		var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].FirstName+"</td><td>"+data[i].LastName+"</td><td>"+data[i].Address+"</td><td><a title='Edit' onclick='EditUser("+userObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteUser("+data[i].UserId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
+		var userObject = JSON.stringify({UserId:data[i].UserId,FirstName:data[i].FirstName,CNIC:data[i].CNIC,MobileNo:data[i].MobileNo,Address:data[i].Address,Salary:data[i].Salary});
+		var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].FirstName+"</td><td>"+data[i].CNIC+"</td><td>"+data[i].MobileNo+"</td><td>"+data[i].Address+"</td><td>"+data[i].Salary+"</td><td><a title='Edit' onclick='EditUser("+userObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteUser("+data[i].UserId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
 		$("#tbluserprofile tbody").append(tr);
 	}
-	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
+	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
 	BindDataTable("tbluserprofile",columns);
 	}
 	$("#divDeleteTest").modal("hide");
@@ -165,7 +182,7 @@ function AddUser()
 	var UserID = $("#btnAddUser").attr("UserID");
 	if(!UserID)
 		UserID=0;
-	var data = {UserId:UserID,FirstName:$("#txtFirstName").val(),LastName:$("#txtLastName").val(),Address:$("#txtAddress").val()};
+	var data = {UserId:UserID,FirstName:$("#txtFirstName").val(),CNIC:$("#txtCNIC").val(),MobileNo:$("#txtMobileNo").val(),Address:$("#txtAddress").val(),Salary:$("#txtSalary").val()};
 	APICall("<?php echo base_url(); ?>" + "index.php/EmployeesController/AddUser", "SuccessAddUser", "FailureAddUser", "POST",data);
 }
 function SuccessAddUser(data)
@@ -187,8 +204,10 @@ function ConfirmDeleteUser(id)
 function EditUser(obj)
 {
 	$("#txtFirstName").val(obj.FirstName);
-	$("#txtLastName").val(obj.LastName);
+	$("#txtCNIC").val(obj.CNIC);
+	$("#txtMobileNo").val(obj.MobileNo);
 	$("#txtAddress").val(obj.Address);
+	$("#txtSalary").val(obj.Salary);
 	$("#btnAddUser").attr("UserID",obj.UserId);
 	$("#divAddTest").modal("show");
 }

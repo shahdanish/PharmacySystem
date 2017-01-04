@@ -30,12 +30,12 @@ class EmployeesController extends MY_Controller
 				$this->layout();
 			}
 			else {
-				$this->middle = 'OrthopaedicSlip'; // passing middle to function. change this for different views.
+				$this->middle = 'Dashboard'; // passing middle to function. change this for different views.
 				$this->layout();
 			}
 		}
 		else {
-			$this->middle = 'OrthopaedicSlip'; // passing middle to function. change this for different views.
+			$this->middle = 'login_form'; // passing middle to function. change this for different views.
 			$this->layout();
 		}
 	}
@@ -48,7 +48,7 @@ class EmployeesController extends MY_Controller
 
 	function AddUser()
 	{
-		$result = $this->Employee_db->AddUser($this->input->post("UserId"),$this->input->post("FirstName"),$this->input->post("LastName"),$this->input->post("Address"));
+		$result = $this->Employee_db->AddUser($this->input->post("UserId"),$this->input->post("FirstName"),$this->input->post("CNIC"),$this->input->post("MobileNo"),$this->input->post("Address"),$this->input->post("Salary"));
 		echo json_encode($result);
 	}
 	function DeleteUser()

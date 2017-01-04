@@ -99,7 +99,7 @@
 					</a>
 
 				</li>
-        <li class="nav-item start">
+				<li class="nav-item start">
 
 					<a href= "<?php echo site_url('LabTestsController/Index');?>" class="nav-link nav-toggle">
 						<i class="fa fa-user-md"></i>
@@ -107,6 +107,16 @@
 						<span class="selected"></span>
 						<span class="arrow open"></span>
 					</a>
+
+				</li>
+				<li class="nav-item start">
+
+				  <a href= "<?php echo site_url('HospitalChargesController/Index');?>" class="nav-link nav-toggle">
+					<i class="fa fa-user-md"></i>
+					<span class="title">Hospital Charges</span>
+					<span class="selected"></span>
+					<span class="arrow open"></span>
+				  </a>
 
 				</li>
 
