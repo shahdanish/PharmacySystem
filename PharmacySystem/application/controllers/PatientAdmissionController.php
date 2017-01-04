@@ -32,6 +32,11 @@ class PatientAdmissionController extends MY_Controller
 		$this->middle = 'Discharge';
 		$this->layout();
 	}
+	public function PatientReport()
+	{
+		$this->middle = 'PatientReport';
+		$this->layout();
+	}
 	public function SavePatient()
 	{	
 		$data = array(
@@ -57,6 +62,9 @@ class PatientAdmissionController extends MY_Controller
 	}	
 	function SavePatientDischargeInfo()
 	{
+		$data = json_decode($this->input->post("InventoryUsed"));
+		
+		
 		$data = array(
 				'AdmissionID' => $this->input->post("AdmissionID"),
 				'DischargedBy' => $this->input->post("DischargedBy"),
@@ -75,7 +83,7 @@ class PatientAdmissionController extends MY_Controller
 				'Total' => $this->input->post("Total"),
 				'Discount' => $this->input->post("Discount"),
 				'InventoryFee' => $this->input->post("InventoryFee"),
-				
+				'InventoryUsed'=>$data
 				
 				
 				);

@@ -26,7 +26,7 @@
 				<div class="portlet box blue">
 					<div class="portlet-title">
 						<div class="caption">
-							<i class="fa fa-gift"></i>Discharge Form</div>
+							<i class="fa fa-gift"></i>Patient Report (<span id="spanPateintStatus"></span>)</div>
 						<div class="tools">
 							<a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
 							<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
@@ -139,24 +139,7 @@
 									</div>
 
 								<!--/row-->
-								<h1 class="form-section">Add Inventory Items</h1>
-								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<h3>Select Items</h3>
-										</div>
-									</div>
-									<!--/span-->
-									<div class="col-md-8">
-										<div class="form-group">
-											<label class="control-label">Item</label>
-											<input type="text" id="txtInventoryItem" class="form-control" placeholder="Item">
-
-										</div>
-									</div>
-
-									<!--/span-->
-								</div>
+								
 								<h1 class="form-section">Patient Bill</h1>
 
 								<div class="row" id="divPatientBill">
@@ -166,14 +149,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Total Admission Fee</label>
-											<input type="number" id="txtAdmissionFee" class="form-control subTotal" placeholder="Admission Fee">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalAdmissionFee" class="form-control mainTotal" placeholder="Total Fee">
@@ -190,30 +167,9 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="control-label">Select Consultant</label>
-											<select class="form-control" id="ddlDoctors">
-
-											</select>
-
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="control-label">Consultant Fee</label>
-											<input type="number" id="txtConsultantFee" onkeyup="CalcaulateConsultantFee()" onchange="CalcaulateConsultantFee()" class="form-control" placeholder="Consultant Fee">
-
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="control-label">Total Visits</label>
-											<input type="number" id="txtConsultantVisits" onkeyup="CalcaulateConsultantFee()" class="form-control" placeholder="Total Visits">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalConsultantFee" class="form-control mainTotal" placeholder="Total Fee">
@@ -230,14 +186,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Nursing Charges</label>
-											<input type="number" id="txtNursingFee" class="form-control subTotal" placeholder="Nursing Charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalNursingFee" class="form-control mainTotal" placeholder="Total">
@@ -253,21 +203,8 @@
 										</div>
 									</div>
 									<!--/span-->
+									
 									<div class="col-md-4">
-										<div class="form-group">
-											<label class="control-label">Room Charges Per Day</label>
-											<input type="number" id="txtRoomCharges" onchange="CalcaulateRoomCharges()" onkeyup="CalcaulateRoomCharges()"  class="form-control" placeholder="Room Charges Per Day">
-
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="control-label">Total Days</label>
-											<input type="number" id="txtRoomDays" onchange="CalcaulateRoomCharges()" onkeyup="CalcaulateRoomCharges()" class="form-control" placeholder="Total Days">
-
-										</div>
-									</div>
-									<div class="col-md-2">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalRoomCharges" class="form-control mainTotal" placeholder="Total">
@@ -283,14 +220,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">AC charges</label>
-											<input type="number" id="txtAcCharges" class="form-control subTotal" placeholder="AC charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalAcCharges" class="form-control mainTotal" placeholder="Total">
@@ -306,14 +237,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Heater Charges</label>
-											<input type="number" id="txtHeaterCharges" class="form-control subTotal" placeholder="Heater Charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalHeaterCharges" class="form-control mainTotal" placeholder="Total">
@@ -329,14 +254,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Operation Fee</label>
-											<input type="number" id="txtOperationFee" class="form-control subTotal" placeholder="Operation Fee">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalOperationFee" class="form-control mainTotal" placeholder="Total">
@@ -352,14 +271,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Theater Charges</label>
-											<input type="number" id="txtTheaterCharges" class="form-control subTotal" placeholder="Theater Charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalTheaterCharges" class="form-control mainTotal" placeholder="Total">
@@ -375,14 +288,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Anaesthesia Fee</label>
-											<input type="number" id="txtAnesthesiaFee" class="form-control subTotal" placeholder="Anaesthesia Fee">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalAnesthesiaFee" class="form-control mainTotal" placeholder="Total">
@@ -398,14 +305,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Hardware Charges</label>
-											<input type="number" id="txtHardwareFee" class="form-control subTotal" placeholder="Hardware Charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalHardwareFee" class="form-control mainTotal" placeholder="Total">
@@ -421,14 +322,8 @@
 										</div>
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Operation Medicine Charges</label>
-											<input type="number" id="txtMedFee" class="form-control subTotal" placeholder="Medicine Charges">
-
-										</div>
-									</div>
-									<div class="col-md-2">
+									
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Total</label>
 											<input type="number" id="txtTotalMedFee" class="form-control mainTotal" placeholder="Total">
@@ -439,12 +334,12 @@
 								</div>
 
 								<div class="row">
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 									  <h2 class="">Total</h2>
 									</div>
 								  </div>
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 										<label class="control-label">Total Bill</label>
 										<input type="number" id="txtBill" class="form-control input-lg" onchange="CalculateMainTotal()" placeholder="Total Bill" readonly="readonly">
@@ -452,12 +347,12 @@
 								  </div>
 								</div>
 								<div class="row">
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 									  <h2 class="">Advance</h2>
 									</div>
 								  </div>
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 										<label class="control-label">Advace Fee</label>
 										<input type="number" id="txtAdvanceFee1" class="form-control input-lg" placeholder="Advance Fee" readonly="readonly">
@@ -465,12 +360,12 @@
 								  </div>
 								</div>
 								<div class="row">
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 									  <h2 class="">Discount</h2>
 									</div>
 								  </div>
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 										<label class="control-label">Total Discount</label>
 										<input type="number" id="txtDiscount" onchange="CalculateMainTotal()" onkeyup="CalculateMainTotal()" class="form-control input-lg" placeholder="Total Discount">
@@ -478,12 +373,12 @@
 								  </div>
 								</div>
 								<div class="row">
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 									  <h2 class="">Main Total</h2>
 									</div>
 								  </div>
-								  <div class="col-sm-6">
+								  <div class="col-sm-4">
 									<div class="form-group">
 										<label class="control-label">Grand Total</label>
 										<input type="number" id="txtMainTotal" class="form-control input-lg" placeholder="Your Total Bill" readonly="readonly">
@@ -492,9 +387,8 @@
 								</div>
 
 							<div class="form-actions right">
-								<button type="button" class="btn default">Cancel</button>
-								<button type="button" class="btn blue" onclick="SavePatientDischargeInformation()">
-													<i class="fa fa-check"></i> Save</button>
+								<button type="button" class="btn default" onclick="window.location='PatientsList'";>Back</button>
+								
 							</div>
 						</form>
 						<!-- END FORM-->
@@ -528,29 +422,8 @@ $(function(){
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");
 	var data = {PatientID:patientId,AdmissionID:admissionId};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/LoadPatientInfo", "SuccessLoadPatientInfo", "FailureLoadPatientInfo", "POST",data);
-	BindTypeAhead();
-
-	$('#txtInventoryItem').on('typeahead:selected', function (e, obj) {
-		if($("[data-itemid="+obj.ItemID+"]").length > 0)
-			ShowErrorToastMessage("Item already added.");
-		else{
-	inventoryUsed.push({"ItemId":obj.ItemID,"ItemQuantity":0,"ItemPrice":obj.ItemPrice,AdmissionId:admissionId});
-	AddItemsToBill(obj);
-		}
-	});
-	$(".subTotal").keyup(function(){
-		MakeTotalFromSubtotal($(this));
-	});
-	$(".subTotal").change(function(){
-		MakeTotalFromSubtotal($(this));
-	});
-	$(".mainTotal").keyup(function(){
-		CalculateTotalBill($(this));
-	});
-	$(".mainTotal").change(function(){
-		CalculateTotalBill($(this));
-	});
-	$(".mainTotal").attr("readonly","readonly");
+	$("input").attr("readonly","readonly");
+	$("select").attr("disabled","disabled");
 });
 function SuccessLoadDoctors(data)
 {
@@ -570,6 +443,8 @@ function SuccessLoadPatientInfo(data)
 {
 	if(data && data.length > 0)
 	{
+		$("#spanPateintStatus").text(data[0].IsDischarged==1 ? "Discharged" : "Admit");
+		
 		$("#txtPatientName").val(data[0].PatientName);
 		$("#txtCnicNo").val(data[0].PatientCNIC);
 		$("#txtCellNo").val(data[0].CellNo);
@@ -581,91 +456,33 @@ function SuccessLoadPatientInfo(data)
 		$("#txtAdvanceFee").val(data[0].AdvanceFee);
 		$("#txtAdmissionDate").val(data[0].AdmissionDate);
 		$("#txtAdvanceFee1").val(data[0].AdvanceFee);
+		
+		$("#ddlDischargedBy").val(data[0].DischargedBy);
+		$("#txtDischargeReason").val(data[0].DischargeReason);
+		$("#txtTotalAdmissionFee").val(data[0].AdmissionFee);
+		$("#txtTotalConsultantFee").val(data[0].ConsultantFee);
+		$("#txtTotalNursingFee").val(data[0].NursingCharges);
+		$("#txtTotalRoomCharges").val(data[0].RoomCharges);
+		$("#txtTotalAcCharges").val(data[0].AcCharges);
+		$("#txtTotalHeaterCharges").val(data[0].HeaterCharges);
+		$("#txtTotalOperationFee").val(data[0].OperationFee);
+		$("#txtTotalTheaterCharges").val(data[0].TheaterFee);
+		$("#txtTotalAnesthesiaFee").val(data[0].AnaesthesiaFee);
+		$("#txtTotalHardwareFee").val(data[0].HardWareFee);
+		$("#txtTotalMedFee").val(data[0].OperationMedicines);
+		$("#txtDiscount").val(data[0].Discount);
+		$("#txtMainTotal").val(data[0].TotalFee);
+		
+		$("#txtBill").val(parseInt(data[0].TotalFee) - parseInt(data[0].Discount));
+		
 	}
+	
 }
 function FailureLoadPatientInfo(err)
 {
 
 }
-function SavePatientDischargeInformation()
-{
-	var inventoryFee = 0;
-	$(".invetoryItems").each(function(){
-	if(parseInt($(this).val()) > 0){
-		var txtBox = $(this);
-		inventoryFee = inventoryFee + parseInt($(this).val());
-		$.each(inventoryUsed, function() {
-		if (this.ItemId == $(txtBox).attr("data-itemid")) {
-        this.ItemQuantity = $("#txtItem_"+$(txtBox).attr("data-itemid")).val();
-		}
-	});
-	}
-});
-	var patientInfo =
-	{
-	AdmissionFee:$("#txtTotalAdmissionFee").val(),
-	ConsultantFee:$("#txtTotalConsultantFee").val(),
-	NursingFee:$("#txtTotalNursingFee").val(),
-	RoomFee:$("#txtTotalRoomCharges").val(),
-	AcFee:$("#txtTotalAcCharges").val(),
-	HeaterFee:$("#txtTotalHeaterCharges").val(),
-	OperationFee:$("#txtTotalOperationFee").val(),
-	TheaterFee:$("#txtTotalTheaterCharges").val(),
-	AnaesthesiaFee:$("#txtTotalAnesthesiaFee").val(),
-	HardwareFee:$("#txtTotalHardwareFee").val(),
-	MedicineFee:$("#txtTotalMedFee").val(),
-	Total:$("#txtMainTotal").val(),
-	Discount:$("#txtDiscount").val(),
-	AdmissionID:admissionId,
-	DischargedBy:$("#ddlDischargedBy").val(),
-	DischargeReason:$("#txtDischargeReason").val(),
-	InventoryFee:inventoryFee,
-	InventoryUsed:JSON.stringify(inventoryUsed)
-	};
-	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatientDischargeInfo", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
-}
-function SuccessSavePatientInfo()
-{
-	ShowSuccessToastMessage("Patient discharge information saved successfully.");
-}
-function BindTypeAhead()
-{
 
-	try {
-        var dataSource = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('ItemId', 'ItemName','ItemPrice'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-                url: "<?php echo base_url(); ?>" + "index.php/InventoryController/LoadInventoryItemsByName",
-                //wildcard: '%QUERY'
-            },
-            sufficient: 2,
-        });
-        const $tagsInput = $('#txtInventoryItem')
-        $tagsInput.typeahead({
-            minLength: 2,
-            source: dataSource,
-            hint: false,
-            highlight: true
-
-        },
-        {
-            limit: 10,
-            source: dataSource,
-            name: 'dataSource',
-            display: function (item) {
-                return item.ItemName
-            },
-            suggestion: function (data) {
-                return '<div>' + data.ItemName + '–' + data.ItemId + '</div>'
-            },
-
-        });
-    }
-    catch (e) {
-        console.log(e.toString())
-    }
-}
 function AddItemsToBill(obj)
 {
 	var html="<div class='row'>"+
@@ -677,7 +494,7 @@ function AddItemsToBill(obj)
 	"<div class='col-md-3'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Item Quantity</label>"+
-	"<input type='number' id='txtItem_"+obj.ItemID+"'  class='form-control' placeholder='Quantity' onkeyup='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' onchange='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' />"+
+	"<input type='number' id='txtItem_"+obj.ItemID+"' class='form-control' placeholder='Quantity' onkeyup='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' onchange='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' />"+
 	"</div>"+
 	"</div>"+
 	"<div class='col-md-3'>"+
@@ -689,70 +506,10 @@ function AddItemsToBill(obj)
 	"<div class='col-md-2'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Total</label>"+
-	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' data-itemid="+obj.ItemID+" class='form-control mainTotal invetoryItems' placeholder='Total' />"+
+	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' class='form-control mainTotal invetoryItems' placeholder='Total' />"+
 	"</div>"+
 	"</div>"+
 	"</div>";
 	$("#divPatientBill").before(html);
-}
-function CalculatePrice(txtBox,itemId,price)
-{
-	var val = parseInt($(txtBox).val());
-	if(Number(val))
-	{
-		$("#txtItemPrice_"+itemId).val(val*price);
-	}
-	$(".mainTotal").trigger("change");
-}
-function CalcaulateConsultantFee()
-{
-	var visits = parseInt($("#txtConsultantVisits").val());
-	var fee = parseInt($("#txtConsultantFee").val());
-
-	var totalFee = visits * fee;
-	if(isNaN(totalFee))
-		$("#txtTotalConsultantFee").val("0");
-	else
-		$("#txtTotalConsultantFee").val(totalFee);
-	$("#txtTotalConsultantFee").trigger("change");
-}
-function CalcaulateRoomCharges()
-{
-	var days = parseInt($("#txtRoomDays").val());
-	var fee = parseInt($("#txtRoomCharges").val());
-
-	var totalFee = days * fee;
-	if(isNaN(totalFee))
-		$("#txtTotalRoomCharges").val("0");
-	else
-		$("#txtTotalRoomCharges").val(totalFee);
-	$("#txtTotalRoomCharges").trigger("change");
-}
-function MakeTotalFromSubtotal(txtBox)
-{
-	var parentDiv = $(txtBox).parent();
-	$(parentDiv).parent().next('div').find("input[type=number]").val($(txtBox).val());
-	$(parentDiv).parent().next('div').find("input[type=number]").trigger("change");
-}
-function CalculateTotalBill()
-{
-	var totalBill = 0;
-	$(".mainTotal").each(function(){
-		if(parseInt($(this).val()) > 0)
-		totalBill = totalBill+ parseInt($(this).val());
-
-	});
-	$("#txtBill").val(totalBill).trigger("change");
-}
-function CalculateMainTotal()
-{
-	var totalBill = $("#txtBill").val();
-	var advanceFee = $("#txtAdvanceFee1").val();
-	var discount = parseInt($("#txtDiscount").val());
-	if(isNaN(discount))
-		discount = 0;
-
-	var mainTotal = (parseInt(totalBill) + parseInt(advanceFee)) - parseInt(discount);
-	$("#txtMainTotal").val(mainTotal);
 }
 </script>

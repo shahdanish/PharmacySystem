@@ -33,7 +33,13 @@ Class PatientAdmission_db extends CI_Model {
 		$query = 'Update tblPatientAdmission Set DischargeDate = "'.date('Y-m-d H:i:s').'",DischargeReason = "'.$data["DischargeReason"].'",DischargedBy="'.$data["DischargedBy"].'",IsDischarged=1 Where ID = "'.$data["AdmissionID"].'"';
 		$this->db->query($query);
 		$query = 'Update tblPatientCharges Set TotalFee = "'.$data["Total"].'",AdmissionFee = "'.$data["AdmissionFee"].'",ConsultantFee = "'.$data["ConsultantFee"].'",NursingCharges = "'.$data["NursingFee"].'",RoomCharges = "'.$data["RoomFee"].'",AcCharges = "'.$data["AcFee"].'",HeaterCharges = "'.$data["HeaterFee"].'",OperationFee = "'.$data["OperationFee"].'",TheaterFee = "'.$data["TheaterFee"].'",AnaesthesiaFee = "'.$data["AnaesthesiaFee"].'",HardwareFee = "'.$data["HardwareFee"].'",OperationMedicines = "'.$data["MedicineFee"].'",Discount = "'.$data["Discount"].'",InventoryFee = "'.$data["InventoryFee"].'" Where AdmissionId =  "'.$data["AdmissionID"].'"';
-		return $this->db->query($query);
+		$this->db->query($query);
+		foreach($data["InventoryUsed"] as $item)
+		{
+			$query="Insert into tblInventoryUsed (AdmissionId,ItemId,ItemQuantity) values (".$item->AdmissionId.",".$item->ItemId.",".$item->ItemQuantity.")";
+			$this->db->query($query);
+		}
+		return true;
 	}	
 	function SavePatientBillOnDischarge($data)
 	{
@@ -43,7 +49,7 @@ Class PatientAdmission_db extends CI_Model {
 	function LoadPatients($isDischarged)
 	{
 		
-		$query = 'SELECT p.PatientID,p.PatientName,pa.Id,pa.AdmissionDate,pa.AdmitReason FROM `tblpatient` p join `tblpatientAdmission` pa on p.PatientID = pa.PatientID WHERE IFNULL(pa.IsDischarged,0) = "'.$isDischarged.'"';
+		$query = 'SELECT p.PatientID,p.PatientName,pa.Id,pa.AdmissionDate,pa.AdmitReason,IFNULL(IsDischarged,0) IsDischarged FROM `tblpatient` p join `tblpatientAdmission` pa on p.PatientID = pa.PatientID Order by pa.Id desc';
 		return $this->db->query($query)->result();
 	}
 	function LoadPatientInfo($patientId,$admissionId)
@@ -52,5 +58,11 @@ Class PatientAdmission_db extends CI_Model {
 		return $this->db->query($query)->result();
 	}
 }
-
+class InventoryItemUsed
+{
+	public $ItemId;
+	public $ItemPrice;
+	public $ItemQuantity;
+	public $AdmissionId;
+}
 ?>
