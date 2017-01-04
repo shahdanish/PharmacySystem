@@ -11,17 +11,10 @@
 					<i class="fa fa-angle-right"></i>
 				</li>
 				<li>
-					<a href="index.html">Patients List</a>
-					<i class="fa fa-angle-right"></i>
+				Patients List
+					
 				</li>
-				<li class="active">
-					<a href="index.html">Admit Patients List</a>
-					<i class="fa fa-angle-right"></i>
-				</li>
-				<li>
-					<a href="index.html">Discharged Patients List</a>
-
-				</li>
+				
 			</ul>
 
 		</div>
@@ -48,6 +41,7 @@
 									<th>Sr.</th>
 										<th>Name</th>
 										<th>Admission Date</th>
+										<th>Status</th>
 										<th>Admit Reason</th>
 <th></th>
 									</tr>
@@ -77,10 +71,16 @@
 	if(data && data.length > 0){
 	for(var i=0;i<data.length;i++)
 	{
-		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].PatientName+"</td><td>"+data[i].AdmissionDate+"</td><td>"+data[i].AdmitReason+"</td><td><a href=Discharge?PID="+data[i].PatientID+"&AID="+data[i].Id+">Discharge</a></td></tr>";
+		var patientDetails = data[i].PatientName;
+		<?php if($this->session->userdata["logged_in"]["userrole"]==1){ ?>
+		patientDetails = "<a href=PatientReport?PID="+data[i].PatientID+"&AID="+data[i].Id+">"+data[i].PatientName+"</a>";
+		
+		<?php } ?>
+		
+		var tr = "<tr><td>"+(i+1)+"</td><td>"+patientDetails+"</td><td>"+data[i].AdmissionDate+"</td><td>"+(data[i].IsDischarged==0 ? "Admit" : "Discharged") +"</td><td>"+data[i].AdmitReason+"</td><td><a href=Discharge?PID="+data[i].PatientID+"&AID="+data[i].Id+">Discharge</a></td></tr>";
 		$("#tblPatientsAdmitted tbody").append(tr);
 	}
-	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
+	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false},{"bSortable":false}]
 	BindDataTable("tblPatientsAdmitted",columns);
 	}
 }
