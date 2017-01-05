@@ -13,7 +13,8 @@
 <link href="<?php echo base_url();?>application/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<link href="<?php echo base_url();?>application/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+
+<link href="<?php echo base_url();?>application/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
@@ -45,7 +46,8 @@
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?php echo base_url();?>application/assets/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+
+<script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>application/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>

@@ -36,8 +36,10 @@ Class PatientAdmission_db extends CI_Model {
 		$this->db->query($query);
 		foreach($data["InventoryUsed"] as $item)
 		{
-			$query="Insert into tblInventoryUsed (AdmissionId,ItemId,ItemQuantity) values (".$item->AdmissionId.",".$item->ItemId.",".$item->ItemQuantity.")";
+			$query="Insert into tblInventoryUsed (AdmissionId,ItemId,ItemQuantity,ItemPrice) values (".$item->AdmissionId.",".$item->ItemId.",".$item->ItemQuantity.",".$item->ItemPrice.")";
 			$this->db->query($query);
+			$queryInventory = "Update tblinventory Set ItemQuantity = ItemQuantity - ".$item->ItemQuantity." Where ItemId = ".$item->ItemId;
+			$this->db->query($queryInventory);
 		}
 		return true;
 	}	
@@ -56,6 +58,34 @@ Class PatientAdmission_db extends CI_Model {
 	{
 		$query = "select P.*,PA.*,PC.*,U.UserName from tblpatient P join tblPatientAdmission PA on P.patientID = PA.PatientId join tblPatientCharges PC on PC.AdmissionID = PA.ID JOIN tblUsers U ON U.UserID = PA.RefferedBy Where P.PatientID = ".$patientId." And Pa.ID = ".$admissionId;
 		return $this->db->query($query)->result();
+	}
+	function LoadInventoryUsed($admissionId)
+	{
+		$query = "SELECT Iu.ItemQuantity, Iu.ItemPrice, i.ItemName FROM  `tblinventoryUsed` Iu JOIN tblInventoryItems i ON iu.ItemId = i.ItemId WHERE iu.admissionid =".$admissionId;
+		return $this->db->query($query)->result();
+	}
+	function SearchPatients($data)
+	{
+		$query = 'SELECT p.PatientID,p.PatientName,pa.Id,pa.AdmissionDate,pa.AdmitReason,IFNULL(IsDischarged,0) IsDischarged FROM `tblpatient` p join `tblpatientAdmission` pa on p.PatientID = pa.PatientID Where ';	
+		if(!empty($data["Name"]))
+			$query = $query."P.PatientName like '%".$data["Name"]."%'"; 
+		if(!empty($data["CNIC"])){
+			if(!empty($data["Name"]))
+				$query = $query." And ";
+			$query = $query." P.PatientCNIC like '%".$data["CNIC"]."%'";	
+		}
+		if(!empty($data["DischargeReason"]))
+		{
+			if(strpos($query,"And")==false){
+				if(!empty($data["Name"]))	
+					$query = $query." And Pa.DischargeReason like '%".$data["DischargeReason"]."%'";
+				else
+					$query = $query." Pa.DischargeReason like '%".$data["DischargeReason"]."%'";
+			}
+			else
+				$query = $query." And Pa.DischargeReason like '%".$data["DischargeReason"]."%'";
+		}
+	return $this->db->query($query)->result();
 	}
 }
 class InventoryItemUsed

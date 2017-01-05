@@ -98,5 +98,18 @@ class PatientAdmissionController extends MY_Controller
 	{
 		echo json_encode($this->PatientAdmission_db->LoadPatientInfo($this->input->post("PatientID"),$this->input->post("AdmissionID")));
 	}
+	function LoadInventoryUsed()
+	{
+		echo json_encode($this->PatientAdmission_db->LoadInventoryUsed($this->input->get("AdmissionId")));
+	}
+	function SearchPatients()
+	{
+		$data = array(
+				'Name' => $this->input->post("Name"),
+				'CNIC' => $this->input->post("CNIC"),
+				'DischargeReason' => $this->input->post("DischargeReason")
+				);
+		echo json_encode($this->PatientAdmission_db->SearchPatients($data));
+	}
 }
 ?>

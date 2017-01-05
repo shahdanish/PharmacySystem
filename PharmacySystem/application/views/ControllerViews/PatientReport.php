@@ -141,8 +141,9 @@
 								<!--/row-->
 								
 								<h1 class="form-section">Patient Bill</h1>
-
-								<div class="row" id="divPatientBill">
+							<h2 class="form-section" id="h2InvetoryUsed" style="display:none">Inventory Items Used</h2>
+								<h2 id="h2PatientBill" class="form-section">Charges</h2>
+								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
 											<h3>Admission Fee</h3>
@@ -160,6 +161,7 @@
 									<!--/span-->
 								</div>
 								<!--/row-->
+								
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
@@ -422,6 +424,7 @@ $(function(){
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");
 	var data = {PatientID:patientId,AdmissionID:admissionId};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/LoadPatientInfo", "SuccessLoadPatientInfo", "FailureLoadPatientInfo", "POST",data);
+	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/LoadInventoryUsed?AdmissionId="+admissionId, "SuccessLoadInventoryUsed", "FailureLoadInventoryUsed", "GET");
 	$("input").attr("readonly","readonly");
 	$("select").attr("disabled","disabled");
 });
@@ -482,34 +485,28 @@ function FailureLoadPatientInfo(err)
 {
 
 }
-
-function AddItemsToBill(obj)
+function SuccessLoadInventoryUsed(data)
 {
+	if(data.length > 0){
+	var html="";
+for(var i=0;i<data.length;i++){
+	var price = parseInt(data[i].ItemQuantity) * parseInt(data[i].ItemPrice);
 	var html="<div class='row'>"+
 	"<div class='col-md-4'>"+
 	"<div class='form-group'>"+
-	"<h3>"+obj.ItemName+"</h3>"+
+	"<h3>"+data[i].ItemName+"</h3>"+
 	"</div>"+
 	"</div>"+
-	"<div class='col-md-3'>"+
-	"<div class='form-group'>"+
-	"<label class='control-label'>Item Quantity</label>"+
-	"<input type='number' id='txtItem_"+obj.ItemID+"' class='form-control' placeholder='Quantity' onkeyup='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' onchange='CalculatePrice(this,"+obj.ItemID+","+obj.ItemPrice+")' />"+
-	"</div>"+
-	"</div>"+
-	"<div class='col-md-3'>"+
-	"<div class='form-group'>"+
-	"<label class='control-label'>Item Price</label>"+
-	"<input type='number' class='form-control' placeholder='Quantity' value="+obj.ItemPrice+" readonly='readonly' />"+
-	"</div>"+
-	"</div>"+
-	"<div class='col-md-2'>"+
+	"<div class='col-md-4'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Total</label>"+
-	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' class='form-control mainTotal invetoryItems' placeholder='Total' />"+
+	"<input type='text' class='form-control mainTotal invetoryItems' placeholder='Total' readonly='readonly' value='"+price+"' />"+
 	"</div>"+
 	"</div>"+
 	"</div>";
-	$("#divPatientBill").before(html);
+	$("#h2PatientBill").before(html);
+	}
+	$("#h2InvetoryUsed").show();
+	}
 }
 </script>

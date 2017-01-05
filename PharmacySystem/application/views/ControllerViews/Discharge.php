@@ -597,6 +597,7 @@ function SavePatientDischargeInformation()
 		$.each(inventoryUsed, function() {
 		if (this.ItemId == $(txtBox).attr("data-itemid")) {
         this.ItemQuantity = $("#txtItem_"+$(txtBox).attr("data-itemid")).val();
+		this.ItemPrice = $("#txtItemPrice_"+$(txtBox).attr("data-itemid")).val();
 		}
 	});
 	}
@@ -683,13 +684,13 @@ function AddItemsToBill(obj)
 	"<div class='col-md-3'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Item Price</label>"+
-	"<input type='number' class='form-control' placeholder='Quantity' value="+obj.ItemPrice+" readonly='readonly' />"+
+	"<input type='number' id='txtItemPrice_"+obj.ItemID+"' class='form-control' placeholder='Quantity' value="+obj.ItemPrice+" readonly='readonly' />"+
 	"</div>"+
 	"</div>"+
 	"<div class='col-md-2'>"+
 	"<div class='form-group'>"+
 	"<label class='control-label'>Total</label>"+
-	"<input type='text' id='txtItemPrice_"+obj.ItemID+"' data-itemid="+obj.ItemID+" class='form-control mainTotal invetoryItems' placeholder='Total' />"+
+	"<input type='text' id='txtTotalItemPrice_"+obj.ItemID+"' data-itemid="+obj.ItemID+" class='form-control mainTotal invetoryItems' placeholder='Total' />"+
 	"</div>"+
 	"</div>"+
 	"</div>";
@@ -700,7 +701,7 @@ function CalculatePrice(txtBox,itemId,price)
 	var val = parseInt($(txtBox).val());
 	if(Number(val))
 	{
-		$("#txtItemPrice_"+itemId).val(val*price);
+		$("#txtTotalItemPrice_"+itemId).val(val*price);
 	}
 	$(".mainTotal").trigger("change");
 }
