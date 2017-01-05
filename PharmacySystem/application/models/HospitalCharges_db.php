@@ -7,8 +7,10 @@ class HospitalCharges_db extends CI_Model {
 			$query="select * from tblhospitalcharges where IsDeleted=0 and ItemID = 1";
 		else if ($ItemType=="2")
 			$query="select * from tblhospitalcharges where IsDeleted=0 and ItemID = 2";
-		else 
+		else if ($ItemType=="3")
 			$query="select * from tblhospitalcharges where IsDeleted=0 and ItemID = 3";
+		else 
+			$query="select hc.ChargesID,hc.Charges,hc.ItemName,cl.Name  from tblhospitalcharges AS hc JOIN tblchargeslookup AS cl ON hc.ItemID = cl.ItemId";
 		return $this->db->query($query)->result();
 	}
 	function AddAnesthesia($ChargesID,$DoctorName,$PatientName,$Charges)
@@ -21,6 +23,12 @@ class HospitalCharges_db extends CI_Model {
 	{
 		$query="";
 		$query="Insert into tblhospitalcharges(ItemName,Charges,ItemID,Date) values ('".$ItemType."','".$Charges."',2,'".date('Y/m/d H:i:s')."')";
+		return $this->db->query($query);
+	}
+	function AddUtilities($ChargesID,$ItemType,$Charges)
+	{
+		$query="";
+		$query="Insert into tblhospitalcharges(ItemName,Charges,ItemID,Date) values ('".$ItemType."','".$Charges."',3,'".date('Y/m/d H:i:s')."')";
 		return $this->db->query($query);
 	}
 	function DeleteAnesthesia($ChargesID)
