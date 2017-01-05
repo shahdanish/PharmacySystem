@@ -39,6 +39,24 @@ class HospitalChargesController extends MY_Controller
 			$this->layout();
 		}
 	}
+	
+	public function HospitalChargesReport()
+	{
+		if(isset($this->session->userdata["logged_in"])){
+			if($this->session->userdata["logged_in"]["userrole"]==1){
+				$this->middle = 'HospitalChargesReport';
+				$this->layout();
+			}
+			else {
+				$this->middle = 'Dashboard'; // passing middle to function. change this for different views.
+				$this->layout();
+			}
+		}
+		else {
+			$this->middle = 'login_form'; // passing middle to function. change this for different views.
+			$this->layout();
+		}
+	}
 
 	function LoadAnesthesia()
 	{

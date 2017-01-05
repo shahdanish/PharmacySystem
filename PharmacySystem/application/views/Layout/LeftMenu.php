@@ -51,6 +51,16 @@
 				  </a>
 
 				</li>
+				<li class="nav-item start">
+
+				  <a href= "<?php echo site_url('HospitalChargesController/HospitalChargesReport');?>" class="nav-link nav-toggle">
+					<i class="fa fa-user-md"></i>
+					<span class="title">Charges Report</span>
+					<span class="selected"></span>
+					<span class="arrow open"></span>
+				  </a>
+
+				</li>
 			<?php } else { ?>
 				<li class="nav-item start">
 					<a href="javascript:;" class="nav-link nav-toggle">
