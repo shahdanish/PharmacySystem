@@ -56,6 +56,11 @@ class HospitalChargesController extends MY_Controller
 		$result = $this->HospitalCharges_db->AddGases($this->input->post("ChargesID"),$this->input->post("ItemType"),$this->input->post("Charges"));
 		echo json_encode($result);
 	}
+	function AddUtilities()
+	{
+		$result = $this->HospitalCharges_db->AddUtilities($this->input->post("ChargesID"),$this->input->post("ItemType"),$this->input->post("Charges"));
+		echo json_encode($result);
+	}
 	function DeleteAnesthesia()
 	{
 		$result = $this->HospitalCharges_db->DeleteAnesthesia($this->input->post("ChargesID"));

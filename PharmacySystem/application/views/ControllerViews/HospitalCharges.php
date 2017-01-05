@@ -219,11 +219,107 @@
             </div>
         </div>
     </div>
+	
+	<!-- Utilites Items Add Update Delete -->
+	
+	<div class="row">
+
+			<div class="col-md-12">
+				<!-- BEGIN SAMPLE TABLE PORTLET-->
+				<div class="portlet light ">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-hospital-o font-green"></i>
+							<span class="caption-subject font-green bold uppercase">Utilites Charges List</span>
+						</div>
+						<div class="addbtn ">
+							<a href="#" class="btn btn-danger"  id="btnShowAddUtilities"  onclick="ShowAddUtilities()">	<i class="fa fa-plus"></i> Add New Utilities Charges</a>
+						</div>
+
+					</div>
+					<div class="portlet-body">
+						<div class="">
+							<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable" id="tblUtilities">
+								<thead>
+									<tr>
+										<th>Sr.</th>
+										<th>Utility Item</th>
+										<th>Charges</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- END SAMPLE TABLE PORTLET-->
+			</div>
+
+		</div>
+		<div id="divAddUtilities" class="modal fade" tabindex="-1" data-width="400">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						<h4 class="modal-title">Add Utilities</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4>Utility Name</h4>
+								<p>
+									<input type="text" id="txtUtilityName" class="col-md-12 form-control" placeholder="Enter Utility Name" maxlength="50"> </p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h4>Charges</h4>
+								<p>
+									<input type="text" id="txtUtilityCharges" class="col-md-12 form-control" placeholder="Enter Gase Charges" maxlength="50"> </p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+						<button type="button" class="btn green" onclick="AddUtilities()" id="btnAddUtilities">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div id="divDeleteUtilities" class="modal fade" tabindex="-1" data-width="400">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Utility Item</h4>
+                </div>
+                <div class="modal-body">
+
+					<div class="row">
+                        <div class="col-md-12">
+
+                            <p>
+                            Are you sure you want to delete the selected utility item ?
+						</div>
+                    </div>
+				</div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                    <button type="button" id="btnDeleteUtilities" class="btn green" onclick="DeleteUtilities()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <script>
 $(function(){
 	LoadAnesthesia();
 	LoadGases();
+	LoadUtilities();
 });
 
 function SuccessLoadAnesthesia(data)
@@ -350,6 +446,71 @@ function SuccessDeleteGases(data)
 		LoadGases();
 		ShowSuccessToastMessage("Gase has been deleted successfully.");
 		$("#divDeleteGases").modal("hide");
+	}
+}
+
+// Utilities Items Add Update Delete
+
+function SuccessLoadUtilities(data)
+{
+	if(data && data.length > 0){
+	RemoveDataTable("tblUtilities");
+	$("#tblUtilities tbody").html("");
+	for(var i=0;i<data.length;i++)
+	{
+		debugger;
+		var UtilitiesObject = JSON.stringify({ChargesID:data[i].ChargesID,ItemName:data[i].ItemName,Charges:data[i].Charges});
+		var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].Charges+"</td><td><a title='Delete' onclick='ConfirmDeleteUtilities("+data[i].ChargesID+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
+		$("#tblUtilities tbody").append(tr);
+	}
+	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
+	BindDataTable("tblGases",columns);
+	}
+	$("#divDeleteUtilities").modal("hide");
+	$("#divAddUtilities").modal("hide");
+}
+function FailureLoadUtilities(err)
+{
+
+}
+function LoadUtilities()
+{
+	var data = {ItemType:3};
+	APICall("<?php echo base_url(); ?>" + "index.php/HospitalChargesController/LoadAnesthesia", "SuccessLoadUtilities", "FailureLoadUtilities", "POST",data);
+}
+function AddUtilities()
+{
+	debugger;
+	var data = {ChargesID:0,ItemType:$("#txtUtilityName").val(),Charges:$("#txtUtilityCharges").val()};
+	APICall("<?php echo base_url(); ?>" + "index.php/HospitalChargesController/AddUtilities", "SuccessAddUtilities", "FailureAddUtilities", "POST",data);
+}
+function SuccessAddUtilities(data)
+{
+	if(data){
+		LoadUtilities();
+		ShowSuccessToastMessage("Utility has been saved successfully.");
+	}
+}
+function ShowAddUtilities()
+{
+	$("#divAddUtilities").modal("show")
+}
+function ConfirmDeleteUtilities(ID)
+{
+	$("#btnDeleteUtilities").attr("ChargesID",ID);
+	$("#divDeleteUtilities").modal("show");
+}
+function DeleteUtilities()
+{
+	var data={ChargesID :$("#btnDeleteUtilities").attr("ChargesID")};
+	APICall("<?php echo base_url(); ?>" + "index.php/HospitalChargesController/DeleteAnesthesia", "SuccessDeleteUtilities", "FailureDeleteUtilities", "POST",data);
+}
+function SuccessDeleteUtilities(data)
+{
+	if(data){
+		LoadUtilities();
+		ShowSuccessToastMessage("Utility has been deleted successfully.");
+		$("#divDeleteUtilities").modal("hide");
 	}
 }
 </script>

@@ -23,6 +23,12 @@ class HospitalCharges_db extends CI_Model {
 		$query="Insert into tblhospitalcharges(ItemName,Charges,ItemID,Date) values ('".$ItemType."','".$Charges."',2,'".date('Y/m/d H:i:s')."')";
 		return $this->db->query($query);
 	}
+	function AddUtilities($ChargesID,$ItemType,$Charges)
+	{
+		$query="";
+		$query="Insert into tblhospitalcharges(ItemName,Charges,ItemID,Date) values ('".$ItemType."','".$Charges."',3,'".date('Y/m/d H:i:s')."')";
+		return $this->db->query($query);
+	}
 	function DeleteAnesthesia($ChargesID)
 	{
 		$query="Update tblhospitalcharges set IsDeleted = 1 Where ChargesID = ".$ChargesID;
