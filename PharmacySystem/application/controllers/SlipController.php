@@ -63,6 +63,18 @@ class SlipController extends MY_Controller
 			);
 		echo json_encode($this->TestSlip_db->SavePatientAndTest($data));
 	}
+	public function SaveXRayTest()
+	{
+		$data = array(
+				'PatientName' => $this->input->post("PatientName"),
+				'PatientCNIC' => $this->input->post("PatientCnic"),
+				'RefferedBy' => $this->input->post("RefferedBy"),
+				'Test' => $this->input->post("Test"),
+				'TestFee' => $this->input->post("TestFee"),
+				'ItemId'=>$this->input->post("ItemId")
+			);
+		echo json_encode($this->TestSlip_db->SaveXRayTest($data));
+	}
 	
 }
 ?>

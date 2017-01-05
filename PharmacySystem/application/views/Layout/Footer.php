@@ -17,13 +17,13 @@
                     <h4 class="modal-title">Add X-rays</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    
+					<div class="row">
                         <div class="col-md-12">
                             <h4>Enter Total Numbers of Xrays</h4>
                             <p>
                                 <input type="text" class="col-md-12 form-control" placeholder="Enter total Xrays"> </p>
-
-                        </div>
+						</div>
                     </div>
 
                 </div>
@@ -95,6 +95,16 @@
                     <h4 class="modal-title">Add X-rays</h4>
                 </div>
                 <div class="modal-body">
+				<div class="row">
+                        <div class="col-md-12">
+                            <h4>Select X-Ray Type</h4>
+                            <p>
+                                <select class="form-control" name="" id="ddlXRayType">
+								<option value="1">X-Ray(10x14)</option>
+								<option value="2">X-Ray(8x10)</option>
+								</select>
+						</div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Enter Total Numbers of Xrays</h4>
@@ -118,8 +128,8 @@
 
 	})
 	function AddXRayItems(){
-		var ItemsCount = {"Items":$("#txtXrayItems").val()};
-		APICall("<?php echo base_url(); ?>" + "index.php/Dashboard/AddXRays", "SuccessAddXRayItems", "FailureAddXRayItems", "POST",{"Items":$("#txtXrayItems").val()});
+		var ItemsCount = {"Items":$("#txtXrayItems").val(),"itemId":$("#ddlXRayType").val()};
+		APICall("<?php echo base_url(); ?>" + "index.php/Dashboard/AddXRays", "SuccessAddXRayItems", "FailureAddXRayItems", "POST",ItemsCount);
 	}
 function SuccessAddXRayItems(data)
 {

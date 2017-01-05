@@ -24,7 +24,7 @@
 		<div class="row">
 		  <div class="col-md-6 col-md-offset-2 ">
 			<div class="portlet light ">
-			  <span class="ribbon slipno">Slip No. <strong>14</strong></span>
+			  
 			  <div class="media">
 				<div class="media-left">
 				  <div class="slip-logo">

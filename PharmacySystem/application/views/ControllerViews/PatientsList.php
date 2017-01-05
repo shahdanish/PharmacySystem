@@ -133,7 +133,7 @@ function SuccessLoadPatients(data)
 		$("#tblPatientsAdmitted tbody").append(tr);
 	}
 	}
-	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false},{"bSortable":false}]
+	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
 	BindDataTable("tblPatientsAdmitted",columns);
 }
 function FailureLoadPatients(err)

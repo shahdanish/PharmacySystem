@@ -59,7 +59,23 @@
 						<div class="number">
 							<span id="spanTotalXray">0</span>
 						</div>
-						<div class="desc"> Total Xrays Files </div>
+						<div class="desc"> Total Xrays Files(10x14) </div>
+					</div>
+					<a class="more" href="javascript:;"> View more
+							<i class="m-icon-swapright m-icon-white"></i>
+						</a>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="dashboard-stat purple">
+					<div class="visual">
+						<i class="fa fa-heartbeat"></i>
+					</div>
+					<div class="details">
+						<div class="number">
+							<span id="spanTotalXray1">0</span>
+						</div>
+						<div class="desc"> Total Xrays Files(8x10) </div>
 					</div>
 					<a class="more" href="javascript:;"> View more
 							<i class="m-icon-swapright m-icon-white"></i>
@@ -195,6 +211,7 @@ function SuccessLoadTokenID(data)
 	$("#spanTotalXray").html("0");
 	else
 	$("#spanTotalXray").html(data[0].ItemQuantity);
+	$("#spanTotalXray1").html(data[0].ItemQuantity1);
 	$("#spanLabTests").html(data[0].LabTests);
 	//$("#spanPatientsAdmit").attr({"data-value":data[0].AdmitPatients,"data-counter":"counterup"});
 
