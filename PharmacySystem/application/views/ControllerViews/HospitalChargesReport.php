@@ -15,10 +15,53 @@
 				</li>
 			</ul>
 			</div>
-			<div class="row">
+		<div class="row">
 			<div class="col-md-12">
-
-		</div>
+					<div class="panel panel-primay">
+						<div class="panel-heading"> Search Hospital Charges </div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-4">
+									<label class="control-label">From Date</label>
+									<div class="form-group">
+										<div class='input-group date'>
+											<input type='text' class="form-control" id='fromdate' />
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<label class="control-label">To Date</label>
+									<div class="form-group">
+										<div class='input-group date'>
+											<input type='text' class="form-control" id='todate' />
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<label class="control-label">Type</label>
+									<select class="form-control" id="ChargesType">
+									  <option value="0">Select</option>
+									  <option value="1">Anesthesia</option>
+									  <option value="2">Gases</option>
+									  <option value="3">Utility</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+								<br />
+								<input type="button" class="btn btn-primary pull-right" value="Search" onclick="SearchChargesReports()" />
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
 		</div>
 		<div class="clearfix"></div>
 		<!-- END DASHBOARD STATS 1-->
@@ -41,7 +84,8 @@
 										<th>Sr.</th>
 										<th>Charges</th>
 										<th>Item Name</th>
-										<th>Name</th>
+										<th>Date</th>
+										<th>Type</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -64,19 +108,19 @@ $(function(){
 
 function SuccessLoadChargesReport(data)
 {
+	RemoveDataTable("tblChargesReport");
+	$("#tblChargesReport tbody").html("");
 	if(data && data.length > 0){
-		RemoveDataTable("tblChargesReport");
-		$("#tblChargesReport tbody").html("");
 		for(var i=0;i<data.length;i++)
 		{
 			debugger;
-			var AnesthesiaObject = JSON.stringify({ChargesID:data[i].ChargesID,Charges:data[i].Charges,ItemName:data[i].ItemName,Name:data[i].Name});
-			var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].Charges+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].Name+"</td></tr>";
+			var AnesthesiaObject = JSON.stringify({ChargesID:data[i].ChargesID,Charges:data[i].Charges,ItemName:data[i].ItemName,Date:data[i].Date,Name:data[i].Name});
+			var tr="<tr><td>"+(i+1)+"</td><td>"+data[i].Charges+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].Date+"</td><td>"+data[i].Name+"</td></tr>";
 			$("#tblChargesReport tbody").append(tr);
 		}
-		var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}];
-		BindDataTable("tblChargesReport",columns);
 	}
+	var columns = [{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true}];
+	BindDataTable("tblChargesReport",columns);
 }
 function FailureLoadChargesReport(err)
 {
@@ -86,5 +130,17 @@ function LoadAnesthesia()
 {
 	var data = {ItemType:0};
 	APICall("<?php echo base_url(); ?>" + "index.php/HospitalChargesController/LoadAnesthesia", "SuccessLoadChargesReport", "FailureLoadChargesReport", "POST", data);
+}
+function SearchChargesReports()
+{
+	var fromdate=$("#fromdate").val();	
+	var todate=$("#todate").val();	
+	var chargestype = $("#ChargesType").val();
+	var data = {fromdate:fromdate,todate:todate,chargestype:chargestype};
+	if(fromdate=="" && todate=="" && chargestype=="")
+	{
+		return;
+	}
+	APICall("<?php echo base_url(); ?>" + "index.php/HospitalChargesController/SearchAnesthesia", "SuccessLoadChargesReport", "FailureLoadChargesReport", "POST",data);
 }
 </script>

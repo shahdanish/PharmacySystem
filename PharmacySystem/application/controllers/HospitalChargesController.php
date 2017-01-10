@@ -63,6 +63,12 @@ class HospitalChargesController extends MY_Controller
 		$result = $this->HospitalCharges_db->LoadAnesthesia($this->input->post("ItemType"));
 		echo json_encode($result);
 	}
+	
+	function SearchAnesthesia()
+	{
+		$result = $this->HospitalCharges_db->SearchAnesthesia($this->input->post("fromdate"),$this->input->post("todate"),$this->input->post("chargestype"));
+		echo json_encode($result);
+	}
 
 	function AddAnesthesia()
 	{
