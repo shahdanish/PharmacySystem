@@ -94,7 +94,7 @@
 </div>
 <script>
 $(function(){
-APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
+
 APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
 $("#slipDate").text(GetSlipDate());
 })
