@@ -43,6 +43,7 @@
 									<th>Sr.</th>
 										<th>Item Name</th>
 										<th>Item Price</th>
+										<th>Item Quantity</th>
 										<th></th>
 
 
@@ -150,12 +151,12 @@ function SuccessLoadInventoryItems(data)
 	for(var i=0;i<data.length;i++)
 	{
 		var itemObject = JSON.stringify({ItemID:data[i].ItemId,ItemName:data[i].ItemName,ItemPrice:data[i].ItemPrice});
-		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].ItemPrice+"</td><td><a title='Edit' onclick='EditItem("+itemObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteItem("+data[i].ItemId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
+		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].ItemName+"</td><td>"+data[i].ItemPrice+"</td><td>"+data[i].ItemQuantity+"</td><td><a title='Edit' onclick='EditItem("+itemObject+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a><a title='Delete' onclick='ConfirmDeleteItem("+data[i].ItemId+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><i class='icon-trash'></i></a></td></tr>";
 		$("#tblInventoryItems tbody").append(tr);
 	}
 
 	}
-	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
+	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":false}]
 	BindDataTable("tblInventoryItems",columns);
 }
 function FailureLoadInventoryItems(err)
