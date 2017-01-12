@@ -10,7 +10,25 @@ class HospitalCharges_db extends CI_Model {
 		else if ($ItemType=="3")
 			$query="select * from tblhospitalcharges where IsDeleted=0 and ItemID = 3";
 		else 
-			$query="select hc.ChargesID,hc.Charges,hc.ItemName,cl.Name  from tblhospitalcharges AS hc JOIN tblchargeslookup AS cl ON hc.ItemID = cl.ItemId";
+			$query="select hc.ChargesID,hc.Charges,hc.ItemName,hc.Date,cl.Name  from tblhospitalcharges AS hc JOIN tblchargeslookup AS cl ON hc.ItemID = cl.ItemId";
+		return $this->db->query($query)->result();
+	}
+	function SearchAnesthesia($fromdate,$todate,$chargestype)
+	{
+		$query='SELECT hc.ChargesID,hc.Charges,hc.Date,hc.ItemName,cl.Name from tblhospitalcharges AS hc JOIN tblchargeslookup AS cl ON hc.ItemID = cl.ItemId WHERE ';
+		if(!empty($chargestype))
+			$query = $query."hc.ItemID='".$chargestype."'";
+		else 
+			$query = $query."1=1";
+		if(!empty($fromdate) && !empty($todate))
+			$query = $query." AND STR_TO_DATE(hc.Date,'%Y-%m-%d')>=DATE_FORMAT(STR_TO_DATE('".$fromdate."', '%m/%d/%Y'), '%Y-%m-%d') AND STR_TO_DATE(hc.Date,'%Y-%m-%d')<=DATE_FORMAT(STR_TO_DATE('".$todate."', '%m/%d/%Y'), '%Y-%m-%d')";
+		else if (!empty($fromdate) && empty($todate)) {
+			$query = $query." AND STR_TO_DATE(hc.Date,'%Y-%m-%d')>=DATE_FORMAT(STR_TO_DATE('".$fromdate."', '%m/%d/%Y'), '%Y-%m-%d')";
+		}
+		else if (empty($fromdate) && !empty($todate)) {
+			$query = $query." AND STR_TO_DATE(hc.Date,'%Y-%m-%d')<=DATE_FORMAT(STR_TO_DATE('".$todate."', '%m/%d/%Y'), '%Y-%m-%d')";
+		}
+		//print($query);
 		return $this->db->query($query)->result();
 	}
 	function AddAnesthesia($ChargesID,$DoctorName,$PatientName,$Charges)

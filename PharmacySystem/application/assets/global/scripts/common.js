@@ -35,6 +35,7 @@ $(document).ready(function () {
             $(this).css("border-color", "");
         });
 		CheckMaxLengthForNumberTextboxes();
+		DateTimePicker();
 		
     } catch (e) {
         //alert(e.message);
@@ -42,6 +43,10 @@ $(document).ready(function () {
 
     
 });
+
+function DateTimePicker() {
+	$('.date').datetimepicker();
+}
 
 function ShowSuccessToastMessage(message) {
     toastr.remove();
