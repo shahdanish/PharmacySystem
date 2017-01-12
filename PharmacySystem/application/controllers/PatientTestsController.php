@@ -32,6 +32,11 @@ class PatientTestsController extends MY_Controller
 		$result = $this->LabTests_db->LoadPatientTests();
 		echo json_encode($result);
 	}
+	function LoadPatientXRays()
+	{
+		$result = $this->LabTests_db->LoadPatientXRays();
+		echo json_encode($result);
+	}
 	
  }
  ?>

@@ -49,4 +49,10 @@ class LabTests_db extends CI_Model {
 		return $this->db->query($query)->result();
 		
 	}
+	function LoadPatientXRays()
+	{
+		$query="SELECT DISTINCT PT.TestDate, P.PatientName, P.PatientCNIC,PT.TestName FROM  `tblpatientTests` PT JOIN  `tblPatient` p ON PT.PatientID = p.PatientID Where PT.TestId is null";
+		return $this->db->query($query)->result();
+		
+	}
 }

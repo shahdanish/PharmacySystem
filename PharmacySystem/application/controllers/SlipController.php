@@ -46,6 +46,7 @@ class SlipController extends MY_Controller
 		$result = $this->mysqlhelper->LoadTests();
 		echo json_encode($result);
 	}
+	
 	public function LoadDoctors()
 	{
 		$result = $this->mysqlhelper->LoadDoctors();
