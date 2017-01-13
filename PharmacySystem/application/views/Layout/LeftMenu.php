@@ -25,7 +25,7 @@
 
 					<a href= "<?php echo site_url('InventoryController/Inventory');?>" class="nav-link nav-toggle">
 						<i class="fa fa-hospital-o"></i>
-						<span class="title">Inventory</span>
+						<span class="title">Add Inventory</span>
 						<span class="selected"></span>
 						<span class="arrow open"></span>
 					</a>

@@ -390,7 +390,7 @@
 
 							<div class="form-actions right">
 								<button type="button" class="btn default" onclick="window.location='PatientsList'";>Back</button>
-								
+								<button type="button" class="btn default" style="margin-left:12px;" onclick="PrintPatientDischargeReport();";>Print</button>
 							</div>
 						</form>
 						<!-- END FORM-->
@@ -508,5 +508,9 @@ for(var i=0;i<data.length;i++){
 	}
 	$("#h2InvetoryUsed").show();
 	}
+}
+function PrintPatientDischargeReport(){
+	var feilds = {"Patient Name":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(), "Cell No":$("#txtCellNo").val(),"Age":$("#txtAge").val(),"Discharged Reason":$("#txtDischargeReason").val(),"Total Bill":$("#txtMainTotal").val()}
+	PrintAdmitedPatientReport("Patient Report",feilds);
 }
 </script>

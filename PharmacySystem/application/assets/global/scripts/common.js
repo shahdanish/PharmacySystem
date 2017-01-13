@@ -271,3 +271,24 @@ function PrintLabTestSlip(title,feilds)
 	mywindow.print();
     mywindow.close();
 }
+
+
+function PrintAdmitedPatientReport(title,feilds)
+{
+	var mywindow = window.open('', '_blank');
+     mywindow.document.write('<html><head><title>Patient Report</title>');
+     mywindow.document.write('</head><body>');
+    mywindow.document.write("<style>"+ slipPrintStyle+"</style>");    
+	var html="<div class='slipContainer'>"+
+	"<div class='slipLogo'><img src='../../application/assets/global/img/logomain.png' alt='logo' class='imgLogoPrint' /></div><div class='slipHeader'><h3>MILLAT ORTHOPAEDIC & TRAUMA SURGERY HOSPITAL</h3></div>";
+	for(var i=0;i<Object.keys(feilds).length;i++)
+	{
+		html += "<div class='slipFeild'><div class='slipFeildTitle'><strong>"+Object.keys(feilds)[i]+" :</strong></div><div class='slipFeildvalue'>"+Object.values(feilds)[i]+"</div></div>";
+	}
+	html +="</div>";
+	
+	mywindow.document.write(html);
+	mywindow.document.write('</body></html>');
+	mywindow.print();
+    mywindow.close();
+}

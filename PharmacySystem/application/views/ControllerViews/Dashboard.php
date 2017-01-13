@@ -118,72 +118,7 @@
 
 		<div class="clearfix"></div>
 		<!-- END DASHBOARD STATS 1-->
-		<div class="row">
-			<div class="col-md-12">
-				<!-- BEGIN SAMPLE TABLE PORTLET-->
-				<div class="portlet light ">
-					<div class="portlet-title">
-						<div class="caption">
-							<i class="fa fa-stethoscope font-green"></i>
-							<span class="caption-subject font-green bold uppercase">TICKETS SECTION</span>
-						</div>
-					</div>
-					<div class="portlet-body">
-						<div class="table-scrollable">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th> Ticket No. </th>
-										<th> Name </th>
-										<th> Fees </th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td> 1 </td>
-										<td> Farooq Shad </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> Danish </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 2 </td>
-										<td> Muhammad Imran </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 3 </td>
-										<td> Nouman Ali </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 4 </td>
-										<td> Danish </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 5 </td>
-										<td> Danish </td>
-										<td> 600 </td>
-									</tr>
-									<tr>
-										<td> 6</td>
-										<td> Danish </td>
-										<td> 600 </td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<!-- END SAMPLE TABLE PORTLET-->
-			</div>
-
-		</div>
+	
 
 			</div>
 
