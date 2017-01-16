@@ -3,7 +3,10 @@ var currentPage = 1;
 var itemsOnPage = 20;
 var dataTable = null;
 var ajaxCallCounter = 0;
-var slipPrintStyle = ".container{width:100%;float:left;}.slipContainer{width:50%;float:left;}.slipLogo{width:30%;float:left;}.slipHeader{width:70%;float:left;}.slipFeild{width:100%;float:left;padding-top:10px;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
+var slipPrintStyle = ".container{width:100%;float:left;}.slipContainer{width:60%;float:left;border: 2px solid #6f6f6f;padding: 15px;}.slipLogo{width:30%;float:left;}.slipHeader{margin-bottom:25px;width:70%;float:left;}.slipFeild{padding:15px 0;width:100%;float:left;border-bottom: 1px solid #e2e2e2;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
+
+var slipPrintPatientReport = ".container{width:100%;float:left;}.slipContainer{width:100%;float:left;border: 2px solid #6f6f6f;padding: 15px;}.slipLogo{width:30%;float:left;}.slipHeader{margin-bottom:25px;width:70%;float:left;}.slipFeild{padding:8px 0;width:100%;float:left;border-bottom: 1px solid #e2e2e2;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
+
 $(document).ready(function () {
     try {
         $(document).ajaxSend(function (event, request, settings) {
@@ -278,7 +281,7 @@ function PrintAdmitedPatientReport(title,feilds)
 	var mywindow = window.open('', '_blank');
      mywindow.document.write('<html><head><title>Patient Report</title>');
      mywindow.document.write('</head><body>');
-    mywindow.document.write("<style>"+ slipPrintStyle+"</style>");    
+    mywindow.document.write("<style>"+ slipPrintPatientReport +"</style>");    
 	var html="<div class='slipContainer'>"+
 	"<div class='slipLogo'><img src='../../application/assets/global/img/logomain.png' alt='logo' class='imgLogoPrint' /></div><div class='slipHeader'><h3>MILLAT ORTHOPAEDIC & TRAUMA SURGERY HOSPITAL</h3></div>";
 	for(var i=0;i<Object.keys(feilds).length;i++)

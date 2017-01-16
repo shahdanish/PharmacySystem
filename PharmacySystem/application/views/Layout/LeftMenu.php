@@ -61,8 +61,17 @@
 				  </a>
 
 				</li>
+				<li class="nav-item start">
+					<a href="<?php echo site_url('Dashboard/DailySummaryDoctor');?>" class="nav-link">
+						<i class="fa fa-hospital-o"></i>
+						<span class="title">Daily Summary</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+				</li>
 			<?php } else { ?>
 				<li class="nav-item start">
+				
 					<a href="javascript:;" class="nav-link nav-toggle">
 						<i class="fa fa-hospital-o"></i>
 						<span class="title">Slips</span>
@@ -127,13 +136,20 @@
 				  </a>
 
 				</li>
-
+				<li class="nav-item start">
+					<a href="<?php echo site_url('Dashboard/DailySummary');?>" class="nav-link">
+						<i class="fa fa-hospital-o"></i>
+						<span class="title">Daily Summary</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+				</li>
 			<?php } ?>
 <li class="nav-item start">
 
 					<a href= "<?php echo site_url('PatientAdmissionController/PatientsList');?>">
 						<i class="fa fa-user-md"></i>
-						<span class="title">Admit Patients</span>
+						<span class="title">Patient Info</span>
 						<span class="selected"></span>
 						<span class="arrow open"></span>
 					</a>

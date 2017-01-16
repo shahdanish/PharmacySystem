@@ -510,7 +510,7 @@ for(var i=0;i<data.length;i++){
 	}
 }
 function PrintPatientDischargeReport(){
-	var feilds = {"Patient Name":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(), "Cell No":$("#txtCellNo").val(),"Age":$("#txtAge").val(),"Discharged Reason":$("#txtDischargeReason").val(),"Total Bill":$("#txtMainTotal").val()}
+	var feilds = {"Patient Name":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(), "Cell No":$("#txtCellNo").val(),"Age":$("#txtAge").val(),"Discharged Reason":$("#txtDischargeReason").val(),"Admission Fees":$("#txtTotalAdmissionFee").val(),"Consultant Visit Fee":$("#txtTotalConsultantFee").val(),"Nursing Charges":$("#txtTotalNursingFee").val(),"Room Charges":$("#txtTotalRoomCharges").val(),"AC Charges":$("#txtTotalAcCharges").val(),"Heater Charges":$("#txtTotalHeaterCharges").val(),"Operation Charges":$("#txtTotalOperationFee").val(),"Theater Charges":$("#txtTotalTheaterCharges").val(),"Anesthesia Charges":$("#txtTotalAnesthesiaFee").val(),"Hardware Charges":$("#txtTotalHardwareFee").val(),"Operation Medicine Charges":$("#txtTotalMedFee").val(),"Total":$("#txtBill").val(),"Advance Fees":$("#txtAdvanceFee1").val(),"Discount":$("#txtDiscount").val(),"Main Total":$("#txtMainTotal").val()}
 	PrintAdmitedPatientReport("Patient Report",feilds);
 }
 </script>

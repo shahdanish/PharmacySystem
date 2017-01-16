@@ -54,6 +54,16 @@ class Dashboard extends MY_Controller
 		$this->middle = 'UserProfile';
 		$this->layout();
 	}
+	public function DailySummary()
+	{
+		$this->middle = 'DailySummary';
+		$this->layout();
+	}
+	public function DailySummaryDoctor()
+	{
+		$this->middle = 'DailySummaryDoctor';
+		$this->layout();
+	}
 	public function LoadTokenCount()
 	{
 		$result = $this->Dashboard_db->LoadTokenCount();
@@ -67,6 +77,16 @@ class Dashboard extends MY_Controller
 	public function LoadVisitors()
 	{
 		$result = $this->Dashboard_db->LoadVisitors($this->input->get("VisitorType"));
+		echo json_encode($result);
+	}
+	public function LoadDailySummaryAccountant()
+	{
+		$result = $this->Dashboard_db->LoadDailySummaryAccountant();
+		echo json_encode($result);
+	}
+	public function LoadDailySummaryDoctor()
+	{
+		$result = $this->Dashboard_db->LoadDailySummaryDoctor();
 		echo json_encode($result);
 	}
 }

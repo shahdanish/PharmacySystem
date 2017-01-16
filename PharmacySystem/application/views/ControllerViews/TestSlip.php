@@ -67,14 +67,14 @@
 					</div>
 					<div class="form-group">
 					  <label for="">Select Test</label>
-					  <select class="form-control" name="" id="ddlTests">
+					  <select class="form-control" name="" id="ddlTests"">
 						
 					  </select>
 					</div>
 
 					<div class="form-group">
 					  <label for="">Total Fee</label>
-					  <input type="number" name="txtFee" id="txtFee" value="" class="form-control">
+					  <input type="number" name="txtFee" id="txtFee" readonly="readonly" value="" class="form-control">
 					</div>
 					<div class="form-group">
 					  <input type="button" name="" value="Print" class="btn btn-primary btn-block" onclick="SavePatientAndTest()">
@@ -89,9 +89,15 @@
 </div>
 <script>
 $(function(){
-APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
-APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
-$("#slipDate").text(GetSlipDate());
+	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
+	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
+	$("#slipDate").text(GetSlipDate());
+	$("#ddlTests").change(function(){
+		debugger;
+		var selectedTestFees = $('option:selected', this).attr('data-Fees');
+		$("#txtFee").val(selectedTestFees);
+	});
+	
 })
 function SuccessLoadTests(data)
 {
@@ -99,10 +105,10 @@ function SuccessLoadTests(data)
 	{
 		for(var i=0;i<data.length;i++)
 		{
-			$("#ddlTests").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType}).text(data[i].TestName));		
+			$("#ddlTests").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType,"data-Fees":data[i].TestFee}).text(data[i].TestName));		
 		}
 	}
-	
+	$("#ddlTests").change();
 }
 function FailureLoadTests(err)
 {
