@@ -26,13 +26,8 @@
 				<div class="portlet box blue">
 					<div class="portlet-title">
 						<div class="caption">
-							<i class="fa fa-gift"></i>Discharge Form</div>
-						<div class="tools">
-							<a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-							<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="reload" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="remove" data-original-title="" title=""> </a>
-						</div>
+							<i class="fa fa-gift"></i>INPATIENT MEDICAL BILL</div>
+						
 					</div>
 					<div class="portlet-body form">
 						<!-- BEGIN FORM-->

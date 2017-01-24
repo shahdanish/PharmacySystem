@@ -26,7 +26,7 @@
 				<div class="portlet box blue">
 					<div class="portlet-title">
 						<div class="caption">
-							<i class="fa fa-medkit"></i>Inpatient Medical Bill</div>
+							<i class="fa fa-medkit"></i>ADMISSION FORM</div>
 
 					</div>
 					<div class="portlet-body form">
@@ -117,7 +117,7 @@
 										</div>
 								</div>
 								<div class="form-actions right">
-								<button type="button" class="btn default">Cancel</button>
+								<button type="button" class="btn default" onclick="advanceinpatient();";>Print</button>
 								<button type="button" class="btn blue" onclick="SavePatientInformation()">
 													<i class="fa fa-check"></i> Save</button>
 								</div>
@@ -173,5 +173,9 @@ function SuccessSavePatientInfo(data)
 function FailureSavePatientInfo(err)
 {
 
+}
+function advanceinpatient(){
+	var feilds = {"Patient Name":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(), "Cell No":$("#txtCellNo").val(),"Age":$("#txtAge").val(),"Address":$("#txtAddress").val(),"Admit Reason":$("#txtAdmitReason").val(),"Reffered By":$("#ddlRefferedBy").val(),"Room Number":$("#ddlRoomNo").val(),"Advance Fees":$("#txtAdvanceFee").val()}
+	PrintAdmitedPatientReport("Patient Report",feilds);
 }
 </script>

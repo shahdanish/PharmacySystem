@@ -3,7 +3,7 @@ var currentPage = 1;
 var itemsOnPage = 20;
 var dataTable = null;
 var ajaxCallCounter = 0;
-var slipPrintStyle = ".container{width:100%;float:left;}.slipContainer{width:60%;float:left;border: 2px solid #6f6f6f;padding: 15px;}.slipLogo{width:30%;float:left;}.slipHeader{margin-bottom:25px;width:70%;float:left;}.slipFeild{padding:15px 0;width:100%;float:left;border-bottom: 1px solid #e2e2e2;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
+var slipPrintStyle = ".container{width:100%;}.slipContainer{border: 2px solid #6f6f6f;padding: 8px;}.slipLogo{    text-align: center;}.slipHeader h3{font-size: 1em;}.slipHeader{    margin-bottom:25px;text-align:center;}.slipFeild{overflow: hidden;    line-height: 30px;border-bottom: 1px solid #e2e2e2;}.slipFeildTitle{width:48%;float:left;}.slipFeildValue{width:48%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
 
 var slipPrintPatientReport = ".container{width:100%;float:left;}.slipContainer{width:100%;float:left;border: 2px solid #6f6f6f;padding: 15px;}.slipLogo{width:30%;float:left;}.slipHeader{margin-bottom:25px;width:70%;float:left;}.slipFeild{padding:8px 0;width:100%;float:left;border-bottom: 1px solid #e2e2e2;}.slipFeildTitle{width:50%;float:left;}.slipFeildValue{width:50%;float:left;text-align:right;}.imgLogoPrint{width:90px;height:90px;}";
 
@@ -272,7 +272,7 @@ function PrintLabTestSlip(title,feilds)
 	mywindow.document.write(html);
 	mywindow.document.write('</body></html>');
 	mywindow.print();
-    mywindow.close();
+   mywindow.close();
 }
 
 
@@ -294,4 +294,23 @@ function PrintAdmitedPatientReport(title,feilds)
 	mywindow.document.write('</body></html>');
 	mywindow.print();
     mywindow.close();
+}
+function advanceinpatient(title,feilds)
+{
+	var mywindow = window.open('', '_blank');
+     mywindow.document.write('<html><head><title>Patient Report</title>');
+     mywindow.document.write('</head><body>');
+    mywindow.document.write("<style>"+ slipPrintPatientReport +"</style>");    
+	var html="<div class='slipContainer'>"+
+	"<div class='slipLogo'><img src='../../application/assets/global/img/logomain.png' alt='logo' class='imgLogoPrint' /></div><div class='slipHeader'><h3>MILLAT ORTHOPAEDIC & TRAUMA SURGERY HOSPITAL</h3></div>";
+	for(var i=0;i<Object.keys(feilds).length;i++)
+	{
+		html += "<div class='slipFeild'><div class='slipFeildTitle'><strong>"+Object.keys(feilds)[i]+" :</strong></div><div class='slipFeildvalue'>"+Object.values(feilds)[i]+"</div></div>";
+	}
+	html +="</div>";
+	
+	mywindow.document.write(html);
+	mywindow.document.write('</body></html>');
+	mywindow.print();
+   mywindow.close();
 }

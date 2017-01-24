@@ -26,13 +26,8 @@
 				<div class="portlet box blue">
 					<div class="portlet-title">
 						<div class="caption">
-							<i class="fa fa-gift"></i>Patient Report (<span id="spanPateintStatus"></span>)</div>
-						<div class="tools">
-							<a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-							<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="reload" data-original-title="" title=""> </a>
-							<a href="javascript:;" class="remove" data-original-title="" title=""> </a>
-						</div>
+							<i class="fa fa-gift"></i>PATIENT DISCHARGE INSTRUCTIONS (FOR INPATIENT ONLY)</div>
+						
 					</div>
 					<div class="portlet-body form">
 						<!-- BEGIN FORM-->
