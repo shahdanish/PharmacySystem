@@ -89,4 +89,10 @@ class Dashboard extends MY_Controller
 		$result = $this->Dashboard_db->LoadDailySummaryDoctor();
 		echo json_encode($result);
 	}
+	public function AdjustTestFee()
+	{
+		$result = $this->Dashboard_db->AdjustTestFee($this->input->post("VisitorId"),$this->input->post("Fee"));
+		echo json_encode($result);
+		
+	}
 }

@@ -59,6 +59,7 @@ class Dashboard_db extends CI_Model {
 			$query = $query."Date(TokenDate)= DATE(CURDATE())";
 		else
 			$query = $query."Month(TokenDate)=".date("m");
+		$query = $query." Order by Id desc";
 		return $this->db->query($query)->result();
 	}
 	public function LoadDailySummaryAccountant()
@@ -70,5 +71,10 @@ class Dashboard_db extends CI_Model {
 	{
 		$queryText = 'SELECT * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount, (SELECT SUM(TotalFee) DailyTokenFees  from tbltoken where Date(TokenDate) = CURDATE()) DailyTokenFees,(SELECT COUNT(*) DailyLabTestCount  from tblpatienttests where Date(TestDate) = CURDATE()) DailyLabTestCount, (SELECT SUM(tt.TestFee) DailyTestFees from tblpatienttests AS tpt JOIN tbltests AS tt ON tpt.TestID = tt.TestID where Date(TestDate) = CURDATE()) DailyTestFees, (SELECT COUNT(*) DailyXRayCount  from tblpatienttests where Date(TestDate) And TestID is null = CURDATE()) DailyXRayCount, (SELECT Count(*) DailyAdmitPatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0 And Date(AdmissionDate) = CURDATE()) DailyAdmitPatientsCount, (SELECT SUM(tpc.AdvanceFee) DailyAdmissionFee FROM `tblpatientadmission` tpa JOIN tblpatientcharges tpc on tpa.Id = tpc.AdmissionID WHERE IFNULL(tpa.IsDisCharged,0) = 0 And Date(tpa.AdmissionDate) = CURDATE()) DailyAdmissionFee, (SELECT Count(*) DailyDischargePatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 1 And Date(DischargeDate) = CURDATE()) DailyDischargePatientsCount, (SELECT (SUM(tpc.TotalFee) - Sum(tpc.AdvanceFee)) DailyDischargeFee FROM `tblpatientadmission` tpa JOIN tblpatientcharges tpc on tpa.Id = tpc.AdmissionID WHERE IFNULL(tpa.IsDisCharged,0) = 1 And Date(tpa.AdmissionDate) = CURDATE()) DailyDischargeFee, (SELECT SUM(Charges) AS DailyHospitalCharges FROM tblhospitalcharges where Date(Date) = CURDATE()) DailyHospitalCharges)';
 		return $this->db->query($queryText)->result();
+	}
+	public function AdjustTestFee($id,$fee)
+	{
+		$query="Update tbltoken Set TotalFee=".$fee." Where Id = ".$id;
+		return $this->db->query($query);
 	}
 }

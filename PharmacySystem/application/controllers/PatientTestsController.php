@@ -37,6 +37,14 @@ class PatientTestsController extends MY_Controller
 		$result = $this->LabTests_db->LoadPatientXRays();
 		echo json_encode($result);
 	}
-	
+	function AdjustTestFee()
+	{
+		$data = array(
+				'TestId' => $this->input->post("TestId"),
+				'Fee' => $this->input->post("Fee")
+			);
+		$result = $this->LabTests_db->AdjustTestFee($data);
+		echo json_encode($result);
+	}
  }
  ?>

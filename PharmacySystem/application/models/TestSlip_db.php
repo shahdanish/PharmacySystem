@@ -13,7 +13,7 @@ Class TestSlip_db extends CI_Model {
 		$query = 'SELECT LAST_INSERT_ID() As PatientID;';
 		$patientID =  $this->db->query($query)->result();
 		}
-		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["TestID"].'"); ';		
+		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID,Fee) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["TestID"].'","'.$data["TestFee"].'"); ';		
 		$result = $this->db->query($query);
 		return $result;
 		
@@ -30,7 +30,7 @@ Class TestSlip_db extends CI_Model {
 		$query = 'SELECT LAST_INSERT_ID() As PatientID;';
 		$patientID =  $this->db->query($query)->result();
 		}
-		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestName) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["Test"].'"); ';		
+		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestName,Fee) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["Test"].'","'.$data["TestFee"].'"); ';		
 		$result = $this->db->query($query);
 		$query = "Update tblInventory set ItemQuantity = ItemQuantity - 1 where itemID = ".$data["ItemId"];
 		$result = $this->db->query($query);
