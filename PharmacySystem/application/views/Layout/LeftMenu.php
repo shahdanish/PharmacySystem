@@ -116,6 +116,58 @@
 					</a>
 
 				</li>
+				
+				<li class="nav-item start">
+				
+					<a href="javascript:;" class="nav-link nav-toggle">
+						<i class="fa fa-hospital-o"></i>
+						<span class="title">Adjust Fee</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+					<ul class="sub-menu">
+
+						<li class="nav-item start">
+
+							<a href= "<?php echo site_url('Welcome/VisitorsList?type=m');?>">
+								<i class="fa fa-user-md"></i>
+								<span class="title">Orthopaedic Slip Fee (Monthly Patients)</span>
+								<span class="selected"></span>
+								<span class="arrow open"></span>
+							</a>
+
+						</li>
+						<li class="nav-item start">
+
+							<a href= "<?php echo site_url('Welcome/VisitorsList?type=d');?>">
+								<i class="fa fa-user-md"></i>
+								<span class="title">Orthopaedic Slip Fee (Daily Patients)</span>
+								<span class="selected"></span>
+								<span class="arrow open"></span>
+							</a>
+
+						</li>
+
+						<li class="nav-item start ">
+							<a class="nav-link" href= "<?php echo site_url('PatientTestsController/Index');?>">
+								<i class="fa fa-stethoscope"></i>
+								<span class="title">Lab Test Fee</span>
+								<span class="badge badge-danger"></span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="nav-item start">
+
+					<a href= "<?php echo site_url('Dashboard/Inpatient');?>">
+						<i class="fa fa-user-md"></i>
+						<span class="title">Inpatient Form</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+
+				</li>
 				<li class="nav-item start">
 
 					<a href= "<?php echo site_url('LabTestsController/Index');?>" class="nav-link nav-toggle">
