@@ -9,7 +9,7 @@ Class PatientAdmission_db extends CI_Model {
 		$patientID = $this->db->query($patientExists)->result();
 		if(count($patientID)==0)
 		{ 
-		$query = 'insert into tblPatient (PatientName,PatientCNIC,Address,CellNo,RegistrationDate,Age) VALUES ("'.$data["PatientName"].'","'.$data["PatientCNIC"].'","'.$data["Address"].'","'.$data["CellNo"].'", "'. date('Y-m-d H:i:s').'","'.$data["Age"].'");';
+		$query = 'insert into tblPatient (PatientName,PatientCNIC,Address,CellNo,RegistrationDate,Age,Gender) VALUES ("'.$data["PatientName"].'","'.$data["PatientCNIC"].'","'.$data["Address"].'","'.$data["CellNo"].'", "'. date('Y-m-d H:i:s').'","'.$data["Age"].'","'.$data["Gender"].'");';
 		$this->db->query($query);
 		$query = 'SELECT LAST_INSERT_ID() As PatientID;';
 		$patientID =  $this->db->query($query)->result();

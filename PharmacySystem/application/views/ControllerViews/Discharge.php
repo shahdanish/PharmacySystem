@@ -748,7 +748,7 @@ function CalculateMainTotal()
 	if(isNaN(discount))
 		discount = 0;
 
-	var mainTotal = (parseInt(totalBill) + parseInt(advanceFee)) - parseInt(discount);
+	var mainTotal = (parseInt(totalBill) - parseInt(advanceFee)) - parseInt(discount);
 	$("#txtMainTotal").val(mainTotal);
 }
 </script>

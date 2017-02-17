@@ -52,26 +52,23 @@
 				<div class="portlet-body">
 				  <div class="form-group">
 					<label for="">Patient Name</label>
-					<input type="text" name="" value="" id="txtPatientName" class="form-control">
+					<input type="text" name="" value="" id="txtPatientName" class="form-control" required>
 				  </div>
-				  <div class="form-group">
-					<label for="">Patient CNIC</label>
-					<input type="text" name="txtCnicNo" id="txtCnicNo" value="" class="form-control">
-				  </div>
-				  <form class="">
+				
+				  <form class="" id="xrayform">
 					<div class="form-group">
 					  <label for="">Ref by Doctor</label>
-					  <select class="form-control" name="" id="ddlDoctors">
+					  <select class="form-control" name="" id="ddlDoctors" required>
 						
 					  </select>
 					</div>
 					<div class="form-group">
 					  <label for="">Test Name</label>
-					  <input type="text" name="txtCnicNo" id="txtTestName" value="" class="form-control">
+					  <input type="text" name="txtCnicNo" id="txtTestName" value="" class="form-control" required>
 					</div>
 					<div class="form-group">
 					  <label for="">Select X-Ray</label>
-					  <select class="form-control" name="" id="ddlTests">
+					  <select class="form-control" name="" id="ddlTests" required>
 						<option value="1">X-Ray(10x14)</option>
 						<option value="2">X-Ray(8x10)</option>
 					  </select>
@@ -79,7 +76,7 @@
 
 					<div class="form-group">
 					  <label for="">Total Fee</label>
-					  <input type="number" name="txtFee" id="txtFee" value="" class="form-control">
+					  <input type="number" name="txtFee" id="txtFee" value="" class="form-control" required>
 					</div>
 					<div class="form-group">
 					  <input type="button" name="" value="Print" class="btn btn-primary btn-block" onclick="SavePatientAndTest()">
@@ -127,7 +124,10 @@ function FailureLoadDoctors(err)
 	
 }
 function SavePatientAndTest()
-{
+{	
+if(!ValidateForm("xrayform")) {
+				return false;
+			}
 	var data = {
 		PatientName:$("#txtPatientName").val(),
 		PatientCnic:$("#txtCnicNo").val(),
@@ -142,7 +142,7 @@ function SuccessSavePatientAndTest(data)
 {
 	if(data){
 		ShowSuccessToastMessage("Test information saved successfully.");
-		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
+		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
 		PrintLabTestSlip($("#ddlTests option:selected").text(),feilds);
 		location.reload(true);
 	}

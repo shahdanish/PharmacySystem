@@ -57,10 +57,19 @@
 									</div>
 									</div>
 									<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-2">
 										<div class="form-group">
 											<label class="control-label">Age</label>
 											<input type="text" id="txtAge" class="form-control" placeholder="2" maxlength="3">
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label class="control-label">Gender</label>
+											<select class="form-control" id="selectgender">
+											  <option value="Male">Male</option>
+											  <option value="Female">Female</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-md-8">
@@ -99,6 +108,30 @@
 											  <option value="5">5</option>
 											  <option value="6">6</option>
 											  <option value="7">7</option>
+											  <option value="8">8</option>
+											  <option value="9">9</option>
+											  <option value="10">10</option>
+											  <option value="11">11</option>
+											  <option value="12">12</option>
+											  <option value="13">13</option>
+											  <option value="14">14</option>
+											  <option value="15">15</option>
+											  <option value="16">16</option>
+											  <option value="17">17</option>
+											  <option value="18">18</option>
+											  <option value="19">19</option>
+											  <option value="20">20</option>
+											  <option value="21">21</option>
+											  <option value="22">22</option>
+											  <option value="23">23</option>
+											  <option value="24">24</option>
+											  <option value="25">25</option>
+											  <option value="26">26</option>
+											  <option value="27">27</option>
+											  <option value="28">28</option>
+											  <option value="29">29</option>
+											  <option value="30">30</option>
+											  
 											</select>
 
 										</div>
@@ -162,7 +195,8 @@ Address:$("#txtAddress").val(),
 RefferedBy:$("#ddlRefferedBy").val(),
 AdmitReason:$("#txtAdmitReason").val(),
 AdvanceFee:$("#txtAdvanceFee").val(),
-RoomNo:$("#ddlRoomNo").val()
+RoomNo:$("#ddlRoomNo").val(),
+Gender:$("#selectgender").val()
 	};
 	APICall("<?php echo base_url(); ?>" + "index.php/PatientAdmissionController/SavePatient", "SuccessSavePatientInfo", "FailureSavePatientInfo", "POST",patientInfo);
 }

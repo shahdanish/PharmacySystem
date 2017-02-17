@@ -50,31 +50,39 @@
 					</div>
 				</div>
 				<div class="portlet-body">
-				  <div class="form-group">
+				 
+
+				  <form class="" id="testform">
+				   <div class="form-group">
 					<label for="">Patient Name</label>
-					<input type="text" name="" value="" id="txtPatientName" class="form-control">
+					<input type="text" name="" value="" id="txtPatientName" class="form-control" required>
 				  </div>
-				  <div class="form-group">
-					<label for="">Patient CNIC</label>
-					<input type="text" name="txtCnicNo" id="txtCnicNo" value="" class="form-control">
-				  </div>
-				  <form class="">
 					<div class="form-group">
 					  <label for="">Ref by Doctor</label>
-					  <select class="form-control" name="" id="ddlDoctors">
+					  <select class="form-control" name="" id="ddlDoctors" required>
 						
 					  </select>
 					</div>
 					<div class="form-group">
 					  <label for="">Select Test</label>
-					  <select class="form-control" name="" id="ddlTests"">
+					  <select class="form-control" name="" id="ddlTests"" required>
 						
 					  </select>
 					</div>
+					<!---<div class="form-group">
+					  <label for="">Select Test</label>
+					  <div class="form-group">
+						  <select class="" multiple="multiple" data-width="100%" id="SelectMultiTest">
+								
+						   </select>
+						</div>
+					</div>---->
+						
+                        
 
 					<div class="form-group">
 					  <label for="">Total Fee</label>
-					  <input type="number" name="txtFee" id="txtFee" readonly="readonly" value="" class="form-control">
+					  <input type="number" name="txtFee" id="txtFee" readonly="readonly" value="" class="form-control" required>
 					</div>
 					<div class="form-group">
 					  <input type="button" name="" value="Print" class="btn btn-primary btn-block" onclick="SavePatientAndTest()">
@@ -92,11 +100,18 @@ $(function(){
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
 	$("#slipDate").text(GetSlipDate());
-	$("#ddlTests").change(function(){
-		debugger;
-		var selectedTestFees = $('option:selected', this).attr('data-Fees');
-		$("#txtFee").val(selectedTestFees);
+	$("#ddltests").change(function(){
+		var selectedtestfees = $('option:selected', this).attr('data-fees');
+		$("#txtfee").val(selectedtestfees);
 	});
+	// $("#SelectMultiTest").change(function(){
+		
+		// var selectedTestFeesTotal = 0;
+		// for(var i=0;i<$('option:selected', this).length;i++){
+			// selectedTestFeesTotal += parseInt($($('option:selected', this)[i]).attr("data-fees"));
+		// }
+		// $("#txtFee").val(selectedTestFeesTotal);
+	// });
 	
 })
 function SuccessLoadTests(data)
@@ -105,10 +120,16 @@ function SuccessLoadTests(data)
 	{
 		for(var i=0;i<data.length;i++)
 		{
-			$("#ddlTests").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType,"data-Fees":data[i].TestFee}).text(data[i].TestName));		
+			debugger;
+			$("#SelectMultiTest").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType,"data-Fees":data[i].TestFee}).text(data[i].TestName));
+			$("#ddlTests").append($("<option></option>").attr({"value":data[i].TestID,"data-TestType":data[i].TestType,"data-Fees":data[i].TestFee}).text(data[i].TestName));
 		}
 	}
 	$("#ddlTests").change();
+	$("#SelectMultiTest").multiselect({
+		includeSelectAllOption: true,
+		buttonClass: 'form-control'
+	});
 }
 function FailureLoadTests(err)
 {
@@ -129,12 +150,15 @@ function FailureLoadDoctors(err)
 }
 function SavePatientAndTest()
 {
+	if(!ValidateForm("testform")) {
+				return false;
+			}
 	var data = {
 		PatientName:$("#txtPatientName").val(),
 		PatientCnic:$("#txtCnicNo").val(),
 		RefferedBy:$("#ddlDoctors").val(),
-		Test:$("#ddlTests").val(),
 		TestFee:$("#txtFee").val(),
+		Test:$("#ddlTests").val(),
 		TestType:$("#ddlTests option:selected").attr("data-TestType")
 	}
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/SavePatientAndTest", "SuccessSavePatientAndTest", "FailureSavePatientAndTest", "POST",data);	
@@ -143,7 +167,7 @@ function SuccessSavePatientAndTest(data)
 {
 	if(data){
 		ShowSuccessToastMessage("Test information saved successfully.");
-		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"CNIC":$("#txtCnicNo").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
+		var feilds = {"Date":$("#slipDate").text(), "PatientName":$("#txtPatientName").val(),"RefferedBy":$("#ddlDoctors option:selected").text(),"Fee":$("#txtFee").val()}
 		PrintLabTestSlip($("#ddlTests option:selected").text(),feilds);
 		location.reload(true);
 	}

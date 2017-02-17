@@ -49,7 +49,8 @@ class PatientAdmissionController extends MY_Controller
 				'AdvanceFee' => $this->input->post("AdvanceFee"),
 				'RoomNo' => $this->input->post("RoomNo"),
 				'BedNo' => $this->input->post("AdvanceFee"),
-				'AdmitReason' => $this->input->post("AdmitReason")
+				'AdmitReason' => $this->input->post("AdmitReason"),
+				'Gender' => $this->input->post("Gender")
 			);
 		$patientID = $this->PatientAdmission_db->SavePatient($data);
 		

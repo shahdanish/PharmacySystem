@@ -20,6 +20,7 @@
 <link href="<?php echo base_url();?>application/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL STYLES -->
+<link href="<?php echo base_url();?>application/assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" id="style_components" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url();?>application/assets/global/css/Typehead.css" rel="stylesheet" type="text/css" />
@@ -61,6 +62,9 @@
 <script src="<?php echo base_url();?>application/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 
 <script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>application/assets/global/plugins/bootstrap-multiselect/js/components-bootstrap-multiselect.min.js" type="text/javascript"></script>
+
 
 
 <!-- END PAGE LEVEL PLUGINS -->

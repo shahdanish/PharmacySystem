@@ -50,18 +50,18 @@
 							</div>
 						</div>
 						<div class="portlet-body">
-						  <form class="" >
+						  <form class="" id="orthoform">
 							<div class="form-group">
 							  <label for="">Patient Name</label>
-							  <input type="text" name="PatientName" id="PatientName" value="" class="form-control">
+							  <input type="text" name="PatientName" id="PatientName" value="" class="form-control" required>
 							</div>
 							<div class="form-group">
 							  <label for="">Total Fees Received</label>
-							  <input type="text" name="FeesRecieved" id="FeesRecieved" value="" class="form-control">
+							  <input type="text" name="FeesRecieved" id="FeesRecieved" value="" class="form-control" required>
 							</div>
 							<div class="form-group">
 							
-							  <input type="submit" name="" value="Print" id="SaveMainSlipBtn" class="btn btn-primary btn-block">
+							  <input type="submit" name="" value="Print" id="SaveMainSlipBtn" class="btn btn-primary btn-block" >
 							</div>
 						  </form>
 						</div>
@@ -92,6 +92,9 @@ function FailureLoadTokenID(err)
 		
 		
 		$("#SaveMainSlipBtn").click(function(event) {
+			if(!ValidateForm("orthoform")) {
+				return false;
+			}
 			event.preventDefault();
 			var PatientName = $("#PatientName").val();
 			var FeesRecieved = $("#FeesRecieved").val();

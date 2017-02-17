@@ -151,7 +151,7 @@
 						<li class="nav-item start ">
 							<a class="nav-link" href= "<?php echo site_url('PatientTestsController/Index');?>">
 								<i class="fa fa-stethoscope"></i>
-								<span class="title">Lab Test Fee</span>
+								<span class="title">Lab Test / X-Ray Fee</span>
 								<span class="badge badge-danger"></span>
 							</a>
 						</li>
