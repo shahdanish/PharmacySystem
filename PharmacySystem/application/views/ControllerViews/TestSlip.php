@@ -63,20 +63,20 @@
 						
 					  </select>
 					</div>
-					<div class="form-group">
+					<!---<div class="form-group">
 					  <label for="">Select Test</label>
 					  <select class="form-control" name="" id="ddlTests"" required>
 						
 					  </select>
-					</div>
-					<!---<div class="form-group">
+					</div>---->
+					<div class="form-group">
 					  <label for="">Select Test</label>
 					  <div class="form-group">
 						  <select class="" multiple="multiple" data-width="100%" id="SelectMultiTest">
 								
 						   </select>
 						</div>
-					</div>---->
+					</div>
 						
                         
 
@@ -100,18 +100,18 @@ $(function(){
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadTests", "SuccessLoadTests", "FailureLoadTests", "GET");	
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/LoadDoctors", "SuccessLoadDoctors", "FailureLoadDoctors", "GET");	
 	$("#slipDate").text(GetSlipDate());
-	$("#ddltests").change(function(){
-		var selectedtestfees = $('option:selected', this).attr('data-fees');
-		$("#txtfee").val(selectedtestfees);
-	});
-	// $("#SelectMultiTest").change(function(){
-		
-		// var selectedTestFeesTotal = 0;
-		// for(var i=0;i<$('option:selected', this).length;i++){
-			// selectedTestFeesTotal += parseInt($($('option:selected', this)[i]).attr("data-fees"));
-		// }
-		// $("#txtFee").val(selectedTestFeesTotal);
+	// $("#ddltests").change(function(){
+		// var selectedtestfees = $('option:selected', this).attr('data-fees');
+		// $("#txtfee").val(selectedtestfees);
 	// });
+	$("#SelectMultiTest").change(function(){
+		
+		var selectedTestFeesTotal = 0;
+		for(var i=0;i<$('option:selected', this).length;i++){
+			selectedTestFeesTotal += parseInt($($('option:selected', this)[i]).attr("data-fees"));
+		}
+		$("#txtFee").val(selectedTestFeesTotal);
+	});
 	
 })
 function SuccessLoadTests(data)
@@ -158,7 +158,7 @@ function SavePatientAndTest()
 		PatientCnic:$("#txtCnicNo").val(),
 		RefferedBy:$("#ddlDoctors").val(),
 		TestFee:$("#txtFee").val(),
-		Test:$("#ddlTests").val(),
+		Test:$("#SelectMultiTest").val().toString(),
 		TestType:$("#ddlTests option:selected").attr("data-TestType")
 	}
 	APICall("<?php echo base_url(); ?>" + "index.php/SlipController/SavePatientAndTest", "SuccessSavePatientAndTest", "FailureSavePatientAndTest", "POST",data);	

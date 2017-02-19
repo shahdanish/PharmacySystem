@@ -13,11 +13,14 @@ Class TestSlip_db extends CI_Model {
 		$query = 'SELECT LAST_INSERT_ID() As PatientID;';
 		$patientID =  $this->db->query($query)->result();
 		}
-		$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID,Fee) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$data["TestID"].'","'.$data["TestFee"].'"); ';		
-		$result = $this->db->query($query);
+		$TestIDs = explode(',', $data["TestID"]);
+		for ($x = 0; $x <= sizeof($data["TestID"]); $x++) {
+			$querytestfees = 'SELECT TestFee FROM tbltests WHERE TestID = '.$TestIDs[$x].';';
+			$fee =  $this->db->query($querytestfees)->row()->TestFee;
+			$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID,Fee) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$TestIDs[$x].'","'. $fee .'"); ';		
+			$result = $this->db->query($query);
+		}
 		return $result;
-		
-		
 	}
 	public function SaveXRayTest($data) {
 		
