@@ -38,6 +38,7 @@
 										<th>Name</th>
 										<th>Date</th>
 										<th>Fee</th>
+										<th>Token No</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -90,13 +91,14 @@ APICall("<?php echo base_url(); ?>" + "index.php/Dashboard/LoadVisitors?VisitorT
 });
 function SuccessLoadVisitors(data)
 {
+	debugger;
 	if(data && data.length > 0){
 	for(var i=0;i<data.length;i++)
 	{
-		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].PatientName+"</td><td>"+data[i].TokenDate+"</td><td>"+data[i].TotalFee+"</td><td><a title='Edit' onclick='ShowEditFee("+data[i].Id+","+data[i].TotalFee+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a></td></tr>";
+		var tr = "<tr><td>"+(i+1)+"</td><td>"+data[i].PatientName+"</td><td>"+data[i].TokenDate+"</td><td>"+data[i].TotalFee+"</td><td>"+data[i].TokenID+"</td><td><a title='Edit' onclick='ShowEditFee("+data[i].Id+","+data[i].TotalFee+")' class='btn btn-circle btn-icon-only btn-default' href='javascript:;'><span class='md-click-circle md-click-animate' style='height: 27px; width: 27px; top: -5.5px; left: -3.84375px;'></span><i class='icon-pencil'></i></a></td></tr>";
 		$("#tblVisitorsPatients tbody").append(tr);
 	}
-	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true}]
+	var columns =[{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true},{"bSortable":true}]
 	BindDataTable("tblVisitorsPatients",columns);
 	}
 }

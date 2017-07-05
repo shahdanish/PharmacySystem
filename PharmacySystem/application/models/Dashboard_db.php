@@ -64,7 +64,7 @@ class Dashboard_db extends CI_Model {
 	}
 	public function LoadDailySummaryAccountant()
 	{
-		$queryText = 'SELECT * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) DailyLabTestCount  from tblpatienttests where Date(TestDate) = CURDATE()) DailyLabTestCount, (SELECT COUNT(*) DailyXRayCount  from tblpatienttests where Date(TestDate) = CURDATE() And TestID is null) DailyXRayCount, (SELECT Count(*) DailyAdmitPatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0 And Date(AdmissionDate) = CURDATE()) DailyAdmitPatientsCount,(SELECT Count(*) DailyDischargePatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 1 And Date(DischargeDate) = CURDATE()) DailyDischargePatientsCount)';
+		$queryText = 'SELECT * from((SELECT COUNT(*) DailyTokenCount  from tbltoken where Date(TokenDate) = CURDATE()) DailyCount,(SELECT COUNT(*) DailyLabTestCount  from tblpatienttests where Date(TestDate) = CURDATE() AND TestID IS NOT NULL) DailyLabTestCount, (SELECT COUNT(*) DailyXRayCount  from tblpatienttests where Date(TestDate) = CURDATE() And TestID is null) DailyXRayCount, (SELECT Count(*) DailyAdmitPatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 0 And Date(AdmissionDate) = CURDATE()) DailyAdmitPatientsCount,(SELECT Count(*) DailyDischargePatientsCount FROM `tblpatientadmission` WHERE IFNULL(IsDisCharged,0) = 1 And Date(DischargeDate) = CURDATE()) DailyDischargePatientsCount)';
 		return $this->db->query($queryText)->result();
 	}
 	public function LoadDailySummaryDoctor()
