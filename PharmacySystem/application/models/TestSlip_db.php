@@ -13,8 +13,12 @@ Class TestSlip_db extends CI_Model {
 		$query = 'SELECT LAST_INSERT_ID() As PatientID;';
 		$patientID =  $this->db->query($query)->result();
 		}
-		$TestIDs = explode(',', $data["TestID"]);
-		for ($x = 0; $x <= sizeof($data["TestID"]); $x++) {
+		if (strpos($data["TestID"], ',') !== false) {
+			$TestIDs = explode(',', $data["TestID"]);
+		} else {
+			$TestIDs = array($data["TestID"]);
+		}
+		for ($x = 0; $x < sizeof($TestIDs); $x++) {
 			$querytestfees = 'SELECT TestFee FROM tbltests WHERE TestID = '.$TestIDs[$x].';';
 			$fee =  $this->db->query($querytestfees)->row()->TestFee;
 			$query = 'insert into tblPatientTests (PatientID,TestDate,RecommendedBy,TestID,Fee) VALUES ("'.$patientID[0]->PatientID.'","'. date('Y-m-d H:i:s').'", "'.$data["RefferedBy"].'","'.$TestIDs[$x].'","'. $fee .'"); ';		
